@@ -4,7 +4,7 @@ app/modules/crypto/tracer.py
 Crypto Tracer Module
 ═════════════════════
 Traces Bitcoin, Ethereum, and USDT/TRON wallet transactions using
-public blockchain APIs (no private keys required — read-only).
+public blockchain APIs (no private keys required - read-only).
 
 FLOW:
   1. Detect blockchain from address format (BTC / ETH / TRON)
@@ -128,7 +128,7 @@ class CryptoTracer:
     ):
         """
         Recursively expands the graph from `address` up to `depth` hops.
-        Uses BFS — fetches all direct neighbours, then recurses.
+        Uses BFS - fetches all direct neighbours, then recurses.
         Stops when depth = 0 or MAX_NODES_PER_TRACE reached.
         """
         if visited is None:
@@ -158,7 +158,7 @@ class CryptoTracer:
                 cp_node = await self._fetch_wallet_info(counterparty, chain)
                 nodes[counterparty] = cp_node
 
-            # Create edge — smart label based on currency and amount
+            # Create edge - smart label based on currency and amount
             currency = tx.get("currency", chain.upper())
             if currency == "USDT":
                 # Show actual USDT amount
@@ -261,7 +261,7 @@ class CryptoTracer:
     async def _btc_address_info(self, address: str) -> dict:
         """Fetches BTC wallet balance from BlockCypher. Skips gracefully if no API key."""
         if not settings.BLOCKCYPHER_API_KEY or settings.BLOCKCYPHER_API_KEY == "YOUR_BLOCKCYPHER_KEY":
-            logger.debug("BlockCypher API key not set — skipping BTC address info fetch.")
+            logger.debug("BlockCypher API key not set - skipping BTC address info fetch.")
             return {}
         try:
             url = f"https://api.blockcypher.com/v1/btc/main/addrs/{address}/balance"
@@ -281,7 +281,7 @@ class CryptoTracer:
     async def _btc_transactions(self, address: str) -> list[dict]:
         """Fetches BTC transactions from BlockCypher. Skips gracefully if no API key."""
         if not settings.BLOCKCYPHER_API_KEY or settings.BLOCKCYPHER_API_KEY == "YOUR_BLOCKCYPHER_KEY":
-            logger.debug("BlockCypher API key not set — skipping BTC transaction fetch.")
+            logger.debug("BlockCypher API key not set - skipping BTC transaction fetch.")
             return []
         try:
             url = f"https://api.blockcypher.com/v1/btc/main/addrs/{address}/full"
@@ -325,7 +325,7 @@ class CryptoTracer:
     async def _eth_address_info(self, address: str) -> dict:
         """Fetches ETH wallet balance from Etherscan. Skips gracefully if no API key."""
         if not settings.ETHERSCAN_API_KEY or settings.ETHERSCAN_API_KEY == "YOUR_ETHERSCAN_API_KEY":
-            logger.debug("Etherscan API key not set — skipping ETH address info fetch.")
+            logger.debug("Etherscan API key not set - skipping ETH address info fetch.")
             return {}
         try:
             r = await self.http.get("https://api.etherscan.io/v2/api", params={
@@ -393,7 +393,7 @@ class CryptoTracer:
     async def _tron_address_info(self, address: str) -> dict:
         """Fetches TRON wallet info from TronGrid. Skips gracefully if no API key."""
         if not settings.TRONGRID_API_KEY or settings.TRONGRID_API_KEY == "YOUR_TRONGRID_API_KEY":
-            logger.debug("TronGrid API key not set — skipping TRON address info fetch.")
+            logger.debug("TronGrid API key not set - skipping TRON address info fetch.")
             return {}
         try:
             r = await self.http.get(
@@ -403,7 +403,7 @@ class CryptoTracer:
             r.raise_for_status()
             data_list = r.json().get("data", [])
             if not data_list:
-                return {}   # new/empty wallet — no balance info, not an error
+                return {}   # new/empty wallet - no balance info, not an error
             data = data_list[0]
             return {
                 "balance_trx": data.get("balance", 0) / 1e6,
@@ -416,7 +416,7 @@ class CryptoTracer:
     async def _tron_transactions(self, address: str) -> list[dict]:
         """Fetches USDT/TRC20 transactions from TronGrid. Skips gracefully if no API key."""
         if not settings.TRONGRID_API_KEY or settings.TRONGRID_API_KEY == "YOUR_TRONGRID_API_KEY":
-            logger.debug("TronGrid API key not set — skipping TRON transaction fetch.")
+            logger.debug("TronGrid API key not set - skipping TRON transaction fetch.")
             return []
         try:
             r = await self.http.get(
@@ -458,7 +458,7 @@ class CryptoTracer:
     async def _save_to_neo4j(self, nodes: list[GraphNode], edges: list[GraphEdge]):
         """
         Persists nodes and edges to Neo4j.
-        Uses MERGE to avoid duplicates — safe to call multiple times.
+        Uses MERGE to avoid duplicates - safe to call multiple times.
         """
         async with db_manager.session() as s:
             for node in nodes:

@@ -21,7 +21,7 @@ const MODULES = [
   { id: 'upi',    icon: CreditCard, label: 'UPI',     color: 'text-ct-green',  placeholder: 'UPI ID (fraud@paytm) or phone (9876543210)' },
   { id: 'shell',  icon: Building2,  label: 'Shell',   color: 'text-ct-amber',  placeholder: 'Company CIN, name, or director DIN' },
   { id: 'social', icon: Phone,      label: 'Social',  color: 'text-ct-purple', placeholder: 'Phone number (9876543210) or UPI ID' },
-  { id: 'multi',  icon: Layers,     label: 'Multi',   color: 'text-ct-cyan',   placeholder: 'Any identifier — runs all 4 modules' },
+  { id: 'multi',  icon: Layers,     label: 'Multi',   color: 'text-ct-cyan',   placeholder: 'Any identifier - runs all 4 modules' },
 ]
 const DEPTHS  = [1, 2, 3, 4, 5]
 const LAYOUTS = ['cose', 'concentric', 'breadthfirst', 'circle', 'grid']
@@ -86,7 +86,7 @@ export default function Investigate() {
     if (graphRef.current) {
       graphRef.current.fit()
     } else {
-      toast.error('Graph not ready — run a trace first')
+      toast.error('Graph not ready - run a trace first')
     }
   }
 
@@ -110,12 +110,12 @@ export default function Investigate() {
       if (ok) {
         toast.success(`Saved as ${name}`)
       } else {
-        toast.error('PNG export failed — try JSON instead')
+        toast.error('PNG export failed - try JSON instead')
       }
       return
     }
 
-    // JSON export — from local graph state, no API needed
+    // JSON export - from local graph state, no API needed
     try {
       const exportData = {
         session_id:      graph.session_id,
@@ -203,7 +203,7 @@ export default function Investigate() {
             {isLoading ? 'Tracing…' : 'Trace →'}
           </button>
 
-          {/* Clear button — only shown when there's something to clear */}
+          {/* Clear button - only shown when there's something to clear */}
           {(identifier || graph) && (
             <button
               onClick={handleClear}
@@ -276,7 +276,7 @@ export default function Investigate() {
           </div>
         )}
 
-        {/* Graph canvas — ref gives direct access to fit/reset/reLayout */}
+        {/* Graph canvas - ref gives direct access to fit/reset/reLayout */}
         {graph && !isLoading && (
           <GraphCanvas
             key={graph.session_id}
@@ -313,7 +313,7 @@ export default function Investigate() {
           </div>
         )}
 
-        {/* Toolbar — now calls graphRef directly */}
+        {/* Toolbar - now calls graphRef directly */}
         <div className="absolute top-3 left-3 flex flex-col gap-1.5">
           <button onClick={handleFit} title="Fit all nodes to screen"
             className="w-8 h-8 bg-ct-surface border border-ct-border rounded-md flex items-center justify-center text-ct-muted hover:text-ct-cyan hover:border-ct-cyan/40 transition-all">

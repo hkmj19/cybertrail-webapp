@@ -1,1 +1,1 @@
-# Test suite for CyberTrail — run with: pytest tests/ -v
+# Test suite for CyberTrail - run with: pytest tests/ -v

@@ -4,9 +4,9 @@ app/api/routes/upi.py
 REST API endpoints for the UPI / Bank Fraud module.
 
 Endpoints:
-  POST /api/v1/upi/trace           — Trace a UPI ID / phone / bank account
-  POST /api/v1/upi/ingest-csv      — Upload a complaint CSV to seed the database
-  GET  /api/v1/upi/stats           — Complaint statistics summary
+  POST /api/v1/upi/trace           - Trace a UPI ID / phone / bank account
+  POST /api/v1/upi/ingest-csv      - Upload a complaint CSV to seed the database
+  GET  /api/v1/upi/stats           - Complaint statistics summary
 """
 
 from app.services.audit_service import audit_service
@@ -68,7 +68,7 @@ async def ingest_complaint_csv(request: Request, file: UploadFile = File(...), c
       fraud_bank_account, amount_inr, transaction_date
 
     Use this to load FIR data, NCRP exports, or bank complaint logs.
-    Repeated ingestion is safe — MERGE prevents duplicates.
+    Repeated ingestion is safe - MERGE prevents duplicates.
     """
     if not file.filename.endswith(".csv"):
         raise HTTPException(status_code=400, detail="Only CSV files accepted.")
@@ -162,7 +162,7 @@ async def ingest_bank_transfers(
             officer_badge=current_user.badge_id,
             officer_role=current_user.role.value,
             ip_address=request.client.host if request.client else "unknown",
-            description=f"Bank transfer CSV ingested: {file.filename} — {imported} transfers",
+            description=f"Bank transfer CSV ingested: {file.filename} - {imported} transfers",
         )
         return {"status": "success", "imported": imported}
     except Exception as e:
@@ -197,16 +197,16 @@ async def link_accounts(
 
     try:
         async with db_manager.session() as s:
-            # Detect node types from ID format — order matters
+            # Detect node types from ID format - order matters
             def node_type(id_str):
                 if "@" in id_str:
                     return ("UpiAccount", "upi_id", "upi_account")
                 if id_str.isdigit() and len(id_str) == 10:
                     return ("Phone", "number", "phone")
                 if id_str.isdigit():
-                    # Pure digits but not 10 chars — DIN (8 digits) or bank account number
+                    # Pure digits but not 10 chars - DIN (8 digits) or bank account number
                     return ("BankAccount", "account_number", "bank_account")
-                # Crypto wallet prefixes — only when it's NOT pure digits or alphanumeric bank acct
+                # Crypto wallet prefixes - only when it's NOT pure digits or alphanumeric bank acct
                 if id_str.startswith("bc1") or id_str.startswith("0x") or id_str.startswith("T9") or id_str.startswith("TB"):
                     return ("Wallet", "address", "wallet_btc")
                 # Default: treat alphanumeric strings as bank accounts (e.g. 1234567890HDFC)
@@ -266,7 +266,7 @@ async def update_bank_transfer(
     note     = str(body.get("note", "")).strip()
     try:
         async with db_manager.session() as s:
-            # Match on from/to regardless of node type — update the UPI_TX edge
+            # Match on from/to regardless of node type - update the UPI_TX edge
             await s.run("""
                 MATCH (a)-[r:UPI_TX]->(b)
                 WHERE COALESCE(a.upi_id, a.number, a.account_number, a.address) = $from_id

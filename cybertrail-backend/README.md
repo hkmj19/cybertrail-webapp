@@ -1,4 +1,4 @@
-# CyberTrail — Financial Crime Investigation Platform
+# CyberTrail - Financial Crime Investigation Platform
 
 Open-source graph intelligence tool for Indian law enforcement agencies.
 Traces crypto wallets, UPI fraud chains, shell companies, and social networks.

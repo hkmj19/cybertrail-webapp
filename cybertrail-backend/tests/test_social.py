@@ -1,7 +1,7 @@
 """
 tests/test_social.py
 ─────────────────────
-Tests for Social Graph Tracer — phone detection, node creation,
+Tests for Social Graph Tracer - phone detection, node creation,
 NetworkX graph construction, and community detection logic.
 """
 

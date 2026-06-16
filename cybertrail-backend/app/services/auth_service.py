@@ -22,7 +22,7 @@ ACCESS_EXPIRE  = settings.JWT_ACCESS_EXPIRE_MINUTES
 REFRESH_EXPIRE = settings.JWT_REFRESH_EXPIRE_MINUTES
 
 
-# ── Password helpers (direct bcrypt — no passlib) ─────────
+# ── Password helpers (direct bcrypt - no passlib) ─────────
 def hash_password(password: str) -> str:
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
@@ -165,14 +165,14 @@ class AuthService:
             new_level = self.ROLE_HIERARCHY.get(updates["role"], 0)
             if new_level < old_level:
                 should_invalidate = True
-                logger.info(f"Role downgraded for {current.username}: {current.role.value} → {updates['role']} — invalidating session")
+                logger.info(f"Role downgraded for {current.username}: {current.role.value} → {updates['role']} - invalidating session")
 
         if updates.get("is_active") is False:
             should_invalidate = True
-            logger.info(f"Account disabled for {current.username} — invalidating session")
+            logger.info(f"Account disabled for {current.username} - invalidating session")
 
         if should_invalidate:
-            # Increment token_version — existing JWTs with old version will be rejected
+            # Increment token_version - existing JWTs with old version will be rejected
             updates["token_version"] = (getattr(current, 'token_version', 0) or 0) + 1
 
         set_clause = ", ".join(f"u.{k} = ${k}" for k in updates)

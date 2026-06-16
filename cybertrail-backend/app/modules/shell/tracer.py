@@ -158,7 +158,7 @@ class ShellTracer:
     ):
         """
         Given a director DIN, finds all companies where this person is a director.
-        This reveals shared-director shells — a key red flag.
+        This reveals shared-director shells - a key red flag.
         """
         if f"dir_{din}" in visited or depth <= 0:
             return
@@ -347,7 +347,7 @@ class ShellTracer:
             score += 1
         if director_count == 0:
             score += 2
-        # Director appears in many companies — shell indicator
+        # Director appears in many companies - shell indicator
         if data.get("shared_director_count", 0) >= 3:
             score += 2
         paid_up = data.get("paid_up_capital_inr", 0)
@@ -375,7 +375,7 @@ class ShellTracer:
     def _make_company_node(self, cin: str, data: dict) -> GraphNode:
         """Creates a GraphNode for a company from MCA21/Neo4j data."""
         risk = self._score_shell_risk(data)
-        name = data.get("name", cin) or cin   # never truncate — full name
+        name = data.get("name", cin) or cin   # never truncate - full name
         return GraphNode(
             id=cin,
             label=name,
@@ -407,7 +407,7 @@ class ShellTracer:
         Parses MCA21 HTML response to extract company master data.
         In production: use BeautifulSoup or lxml for robust parsing.
         """
-        # Placeholder — actual parsing depends on MCA21 HTML structure
+        # Placeholder - actual parsing depends on MCA21 HTML structure
         return self._mock_company_data(cin)
 
     def _parse_mca_director_html(self, html: str) -> list[dict]:

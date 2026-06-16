@@ -1,7 +1,7 @@
 """
 tests/test_shell.py
 ────────────────────
-Tests for Shell Company Tracer — CIN detection and risk scoring.
+Tests for Shell Company Tracer - CIN detection and risk scoring.
 """
 import pytest
 from app.modules.shell.tracer import ShellTracer

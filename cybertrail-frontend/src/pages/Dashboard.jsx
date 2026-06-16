@@ -27,7 +27,7 @@ function StatCard({ label, value, sub, color, icon: Icon }) {
           <Icon size={16} className={color} />
         </div>
       </div>
-      <div className={clsx('text-2xl font-semibold font-mono mb-0.5', color)}>{value ?? '—'}</div>
+      <div className={clsx('text-2xl font-semibold font-mono mb-0.5', color)}>{value ?? '-'}</div>
       <div className="text-xs text-ct-muted">{label}</div>
       {sub && <div className="text-[10px] text-ct-muted/60 mt-0.5">{sub}</div>}
     </div>
@@ -37,7 +37,7 @@ function StatCard({ label, value, sub, color, icon: Icon }) {
 function CaseStatPill({ label, value, color }) {
   return (
     <div className="flex flex-col items-center">
-      <div className={clsx('text-2xl font-semibold font-mono', color)}>{value ?? '—'}</div>
+      <div className={clsx('text-2xl font-semibold font-mono', color)}>{value ?? '-'}</div>
       <div className="text-[10px] text-ct-muted uppercase tracking-widest mt-0.5">{label}</div>
     </div>
   )

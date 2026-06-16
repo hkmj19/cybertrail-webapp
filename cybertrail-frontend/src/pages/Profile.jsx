@@ -1,4 +1,4 @@
-// src/pages/Profile.jsx — Officer profile view + password change
+// src/pages/Profile.jsx - Officer profile view + password change
 import { useState } from 'react'
 import { User, Shield, Clock, BadgeCheck, Lock, Eye, EyeOff, Save, Loader2 } from 'lucide-react'
 import toast from 'react-hot-toast'
@@ -14,10 +14,10 @@ const ROLE_COLORS = {
 }
 
 const ROLE_DESC = {
-  admin:      'Full access — user management, all cases, all modules',
+  admin:      'Full access - user management, all cases, all modules',
   supervisor: 'View all cases, assign officers, close investigations',
   officer:    'Create and manage own cases, run all investigation modules',
-  analyst:    'Read-only access — view graphs and reports',
+  analyst:    'Read-only access - view graphs and reports',
 }
 
 function InfoRow({ icon: Icon, label, value, valueClass = '' }) {
@@ -113,7 +113,7 @@ export default function Profile() {
             <p className="text-xs text-ct-muted font-mono">{ROLE_DESC[user.role]}</p>
           </div>
 
-          {/* Profile details — read only */}
+          {/* Profile details - read only */}
           <div className="text-[10px] text-ct-muted uppercase font-mono tracking-widest mb-3">
             Officer Details
           </div>

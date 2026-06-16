@@ -20,7 +20,7 @@ async def get_current_user(
     if not credentials:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Not authenticated — please login",
+            detail="Not authenticated - please login",
             headers={"WWW-Authenticate": "Bearer"},
         )
 
@@ -28,7 +28,7 @@ async def get_current_user(
     if not token_data or not token_data.username:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid or expired token — please login again",
+            detail="Invalid or expired token - please login again",
             headers={"WWW-Authenticate": "Bearer"},
         )
 
@@ -43,14 +43,14 @@ async def get_current_user(
     if not user.is_active:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Account has been disabled — contact your administrator",
+            detail="Account has been disabled - contact your administrator",
         )
 
     # ── Token version mismatch → role was downgraded or account disabled ──
     if token_data.token_version != user.token_version:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Session invalidated — your access level was changed, please login again",
+            detail="Session invalidated - your access level was changed, please login again",
             headers={"WWW-Authenticate": "Bearer"},
         )
 
@@ -63,7 +63,7 @@ def require_roles(*roles: UserRole):
         if current_user.role not in roles:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
-                detail=f"Access denied — requires role: {[r.value for r in roles]}",
+                detail=f"Access denied - requires role: {[r.value for r in roles]}",
             )
         return current_user
     return checker

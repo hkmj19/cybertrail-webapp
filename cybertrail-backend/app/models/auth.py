@@ -11,10 +11,10 @@ from enum import Enum
 
 # ── Roles ────────────────────────────────────────────────
 class UserRole(str, Enum):
-    ADMIN      = "admin"       # Full access — create users, view all cases
+    ADMIN      = "admin"       # Full access - create users, view all cases
     SUPERVISOR = "supervisor"  # View all cases, assign, close
     OFFICER    = "officer"     # Create/view own cases, run traces
-    ANALYST    = "analyst"     # Read-only — view graphs and reports
+    ANALYST    = "analyst"     # Read-only - view graphs and reports
 
 
 # ── Case Status ──────────────────────────────────────────
@@ -195,7 +195,7 @@ class CaseResponse(BaseModel):
 
 
 class CaseSummary(BaseModel):
-    """Lightweight case listing — no notes/traces."""
+    """Lightweight case listing - no notes/traces."""
     id:           str
     case_number:  str
     title:        str

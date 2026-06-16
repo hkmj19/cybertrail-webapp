@@ -201,7 +201,7 @@ async def update_user(
     if not target:
         raise HTTPException(status_code=404, detail="User not found")
 
-    # Protect system admin — cannot change role, status, or badge ID
+    # Protect system admin - cannot change role, status, or badge ID
     if target.username == "admin":
         if data.role is not None or data.is_active is False or data.badge_id is not None:
             raise HTTPException(
@@ -285,6 +285,6 @@ async def admin_reset_password(
         officer_badge=current_user.badge_id,
         officer_role=current_user.role.value,
         ip_address=request.client.host if request.client else "unknown",
-        description=f"Password reset for {user.username} by admin {current_user.username} — session invalidated",
+        description=f"Password reset for {user.username} by admin {current_user.username} - session invalidated",
     )
     return {"message": f"Password reset for {user.username}. Their active session has been invalidated."}

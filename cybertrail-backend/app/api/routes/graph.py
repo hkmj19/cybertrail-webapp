@@ -3,7 +3,7 @@ app/api/routes/graph.py
 ────────────────────────
 Graph Management endpoints.
 
-These endpoints work directly on the Neo4j investigation database —
+These endpoints work directly on the Neo4j investigation database -
 not on live external APIs. Use these to:
   - Search for any entity across all saved investigations
   - Export a saved graph as JSON or GEXF (for Gephi/Maltego)
@@ -24,7 +24,7 @@ router = APIRouter()
 @router.get("/search")
 async def search_entities(
     request: Request,
-    q: str = Query(..., description="Search term — partial match on any identifier"),
+    q: str = Query(..., description="Search term - partial match on any identifier"),
     limit: int = Query(default=20, le=100),
 ):
     """
@@ -124,7 +124,7 @@ async def export_graph(
 
     - **json**: standard node-link JSON (works with D3.js, Cytoscape.js)
     - **gexf**: Gephi XML format (for desktop graph analysis)
-    - **csv**: two CSVs — nodes.csv and edges.csv (for Excel/Pandas)
+    - **csv**: two CSVs - nodes.csv and edges.csv (for Excel/Pandas)
 
     Note: session_id is returned by any /trace endpoint.
     """
@@ -175,7 +175,7 @@ async def database_stats(request: Request):
 async def delete_entity(request: Request, identifier: str, current_user: UserInDB = Depends(require_officer)):
     """
     Removes an entity and all its relationships from the investigation database.
-    Use with caution — this is irreversible.
+    Use with caution - this is irreversible.
     """
     try:
         async with db_manager.session() as s:

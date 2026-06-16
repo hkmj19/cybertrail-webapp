@@ -1,7 +1,7 @@
 """
 tests/test_blacklist.py
 ────────────────────────
-Tests for the Blacklist Service — CSV parsing, check logic, severity mapping.
+Tests for the Blacklist Service - CSV parsing, check logic, severity mapping.
 """
 
 import pytest

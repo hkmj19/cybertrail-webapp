@@ -9,7 +9,7 @@ Every create/update/delete is logged with:
 - when (timestamp)
 - from where (IP address)
 
-Logs are append-only — nobody can delete audit entries, not even admin.
+Logs are append-only - nobody can delete audit entries, not even admin.
 """
 from fastapi import APIRouter, Depends, Query
 from typing import Optional
@@ -73,7 +73,7 @@ async def get_audit_logs(
 
 @router.get("/stats", tags=["Audit"])
 async def audit_stats(current_user: UserInDB = Depends(require_supervisor)):
-    """Summary stats — total actions per officer, suspicious activity counts."""
+    """Summary stats - total actions per officer, suspicious activity counts."""
     async with db_manager.session() as s:
         result = await s.run("""
             MATCH (a:AuditLog)

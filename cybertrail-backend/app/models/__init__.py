@@ -1,4 +1,4 @@
-# app/models/__init__.py — exports all model classes for clean imports
+# app/models/__init__.py - exports all model classes for clean imports
 from app.models.graph import (
     GraphNode, GraphEdge, InvestigationGraph,
     NodeType, EdgeType, RiskLevel,

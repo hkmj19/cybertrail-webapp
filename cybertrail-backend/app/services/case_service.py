@@ -28,7 +28,7 @@ def _parse_dt(val) -> datetime:
     if s.endswith('Z'):
         s = s[:-1] + '+00:00'
     elif '+' not in s and not s.endswith(')'):
-        # No timezone info — stored before fix, treat as UTC
+        # No timezone info - stored before fix, treat as UTC
         s = s + '+00:00'
     try:
         return datetime.fromisoformat(s)

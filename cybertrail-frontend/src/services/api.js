@@ -25,7 +25,7 @@ api.interceptors.request.use(config => {
   return config
 })
 
-// Global error handler — auto logout on 401 session invalidation
+// Global error handler - auto logout on 401 session invalidation
 api.interceptors.response.use(
   res => res,
   err => {
@@ -44,7 +44,7 @@ api.interceptors.response.use(
         }
       } catch {}
       // Show message and redirect
-      toast.error(msg || 'Session expired — please login again')
+      toast.error(msg || 'Session expired - please login again')
       setTimeout(() => { window.location.href = '/login' }, 1500)
       return Promise.reject(err)
     }

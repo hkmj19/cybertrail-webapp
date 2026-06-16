@@ -1,1 +1,1 @@
-# API layer — all routes registered in app/main.py
+# API layer - all routes registered in app/main.py

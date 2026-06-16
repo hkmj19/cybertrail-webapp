@@ -93,5 +93,5 @@ class CacheManager:
         return ":".join(parts)
 
 
-# Singleton — imported everywhere
+# Singleton - imported everywhere
 cache_manager = CacheManager()

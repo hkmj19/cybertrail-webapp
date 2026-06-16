@@ -381,7 +381,7 @@
 //   { id:'link',   label:'Account Link',  icon:Link2,      color:'ct-cyan',   desc:'Manually link two accounts after Section 91 CrPC bank response' },
 // ]
 
-// // Static colour classes — Tailwind needs complete strings at build time
+// // Static colour classes - Tailwind needs complete strings at build time
 // const TAB_ACTIVE = {
 //   'ct-green':  'text-ct-green  bg-ct-green/5  border-b-2 border-b-ct-green  -mb-px',
 //   'ct-purple': 'text-ct-purple bg-ct-purple/5 border-b-2 border-b-ct-purple -mb-px',
@@ -572,7 +572,7 @@
 //       {/* New Complaint Form */}
 //       {showNewForm && canEdit && (
 //         <div className="bg-ct-surface border border-ct-blue/20 rounded-xl p-5 mb-6 animate-slide-up">
-//           <p className="text-[10px] text-ct-blue font-mono uppercase tracking-widest mb-4">New Complaint — Manual Entry</p>
+//           <p className="text-[10px] text-ct-blue font-mono uppercase tracking-widest mb-4">New Complaint - Manual Entry</p>
 //           <div className="space-y-4">
 //             <div>
 //               <p className="text-[10px] text-ct-cyan font-mono uppercase tracking-widest mb-2">Victim / Complainant</p>
@@ -610,7 +610,7 @@
 //         </div>
 //       )}
 
-//       {/* Data Upload — tabbed */}
+//       {/* Data Upload - tabbed */}
 //       {canEdit && (
 //         <div className="bg-ct-surface border border-ct-border rounded-xl mb-6 overflow-hidden">
 //           <div className="grid grid-cols-4 border-b border-ct-border">
@@ -690,9 +690,9 @@
 //                           <tr key={i} className="border-b border-ct-border/40 hover:bg-white/[0.02]">
 //                             <td className="px-3 py-2 text-[11px] font-mono text-ct-purple">{r.from}</td>
 //                             <td className="px-3 py-2"><span className="text-[10px] font-mono px-1.5 py-0.5 bg-ct-purple/10 text-ct-purple rounded">{r.relationship}</span></td>
-//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.to||'—'}</td>
-//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.frequency||'—'}</td>
-//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.date||'—'}</td>
+//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.to||'-'}</td>
+//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.frequency||'-'}</td>
+//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.date||'-'}</td>
 //                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.source}</td>
 //                             <td className="px-3 py-2">
 //                               <RowActions
@@ -712,7 +712,7 @@
 //                 </div>
 //               )}
 //               {importedData?.social?.length === 0 && !loadingImported && (
-//                 <p className="text-[11px] font-mono text-ct-muted text-center py-4">No call records yet — upload CDR CSV or add manually below</p>
+//                 <p className="text-[11px] font-mono text-ct-muted text-center py-4">No call records yet - upload CDR CSV or add manually below</p>
 //               )}
 
 //               <div className="border-t border-ct-border pt-6">
@@ -777,9 +777,9 @@
 //                         {importedData.shell.map((r,i)=>(
 //                           <tr key={i} className="border-b border-ct-border/40 hover:bg-white/[0.02]">
 //                             <td className="px-3 py-2 text-[11px] font-mono text-ct-amber">{r.din}</td>
-//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.director_name||'—'}</td>
+//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.director_name||'-'}</td>
 //                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.cin}</td>
-//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.company_name||'—'}</td>
+//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.company_name||'-'}</td>
 //                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.designation||'Director'}</td>
 //                             <td className="px-3 py-2">
 //                               <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${r.flagged?'bg-ct-red/10 text-ct-red':'bg-ct-green/10 text-ct-green'}`}>
@@ -804,7 +804,7 @@
 //                 </div>
 //               )}
 //               {importedData?.shell?.length === 0 && !loadingImported && (
-//                 <p className="text-[11px] font-mono text-ct-muted text-center py-4">No company records yet — upload CSV or add manually below</p>
+//                 <p className="text-[11px] font-mono text-ct-muted text-center py-4">No company records yet - upload CSV or add manually below</p>
 //               )}
 
 //               <div className="border-t border-ct-border pt-6">
@@ -876,9 +876,9 @@
 //                           <tr key={i} className="border-b border-ct-border/40 hover:bg-white/[0.02]">
 //                             <td className="px-3 py-2 text-[11px] font-mono text-ct-cyan">{r.from}</td>
 //                             <td className="px-3 py-2 text-[11px] font-mono text-ct-cyan">{r.to}</td>
-//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-amber">{r.amount?`₹${Number(r.amount).toLocaleString('en-IN')}`:'—'}</td>
-//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.date||'—'}</td>
-//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.reference||'—'}</td>
+//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-amber">{r.amount?`₹${Number(r.amount).toLocaleString('en-IN')}`:'-'}</td>
+//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.date||'-'}</td>
+//                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.reference||'-'}</td>
 //                             <td className="px-3 py-2">
 //                               <RowActions
 //                                 onEdit={()=>setEditingTransfer(r)}
@@ -959,7 +959,7 @@
 //           </div>
 //         </div>
 //         {complaints.length === 0 ? (
-//           <div className="py-10 text-center text-ct-muted text-sm font-mono">No complaints yet — upload a CSV or add one manually above</div>
+//           <div className="py-10 text-center text-ct-muted text-sm font-mono">No complaints yet - upload a CSV or add one manually above</div>
 //         ) : (
 //           <div className="overflow-x-auto">
 //             <table className="w-full">
@@ -974,15 +974,15 @@
 //                 {complaints.map((c,i)=>(
 //                   <tr key={i} className="border-b border-ct-border/40 hover:bg-white/[0.02] transition-colors">
 //                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-cyan whitespace-nowrap">{c.complaint_id}</td>
-//                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-text">{c.complainant_name||'—'}</td>
-//                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-purple">{c.complainant_phone||'—'}</td>
-//                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-text">{c.fraud_upi_id||'—'}</td>
+//                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-text">{c.complainant_name||'-'}</td>
+//                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-purple">{c.complainant_phone||'-'}</td>
+//                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-text">{c.fraud_upi_id||'-'}</td>
 //                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-amber whitespace-nowrap">
-//                       {c.amount_inr?`₹${Number(c.amount_inr).toLocaleString('en-IN')}`:'—'}
+//                       {c.amount_inr?`₹${Number(c.amount_inr).toLocaleString('en-IN')}`:'-'}
 //                     </td>
-//                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-muted">{c.fir_number||'—'}</td>
+//                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-muted">{c.fir_number||'-'}</td>
 //                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-muted whitespace-nowrap">
-//                       {c.transaction_date?new Date(c.transaction_date).toLocaleDateString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric'}):'—'}
+//                       {c.transaction_date?new Date(c.transaction_date).toLocaleDateString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric'}):'-'}
 //                     </td>
 //                     <td className="px-4 py-2.5">
 //                       <span className={clsx('text-[10px] font-mono px-2 py-0.5 rounded whitespace-nowrap',
@@ -1398,7 +1398,7 @@ const TABS = [
   { id:'link',   label:'Account Link',  icon:Link2,      color:'ct-cyan',   desc:'Manually link two accounts after Section 91 CrPC bank response' },
 ]
 
-// Static colour classes — Tailwind needs complete strings at build time
+// Static colour classes - Tailwind needs complete strings at build time
 const TAB_ACTIVE = {
   'ct-green':  'text-ct-green  bg-ct-green/5  border-b-2 border-b-ct-green  -mb-px',
   'ct-purple': 'text-ct-purple bg-ct-purple/5 border-b-2 border-b-ct-purple -mb-px',
@@ -1590,7 +1590,7 @@ export default function Complaints() {
       {/* New Complaint Form */}
       {showNewForm && canEdit && (
         <div className="bg-ct-surface border border-ct-blue/20 rounded-xl p-5 mb-6 animate-slide-up">
-          <p className="text-[10px] text-ct-blue font-mono uppercase tracking-widest mb-4">New Complaint — Manual Entry</p>
+          <p className="text-[10px] text-ct-blue font-mono uppercase tracking-widest mb-4">New Complaint - Manual Entry</p>
           <div className="space-y-4">
             <div>
               <p className="text-[10px] text-ct-cyan font-mono uppercase tracking-widest mb-2">Victim / Complainant</p>
@@ -1628,7 +1628,7 @@ export default function Complaints() {
         </div>
       )}
 
-      {/* Data Upload — tabbed — upload/edit hidden for analyst, tables visible to all */}
+      {/* Data Upload - tabbed - upload/edit hidden for analyst, tables visible to all */}
       <div className="bg-ct-surface border border-ct-border rounded-xl mb-6 overflow-hidden">
           <div className="grid grid-cols-4 border-b border-ct-border">
             {TABS.map(tab=>(
@@ -1678,7 +1678,7 @@ export default function Complaints() {
           {/* ── Social / CDR ── */}
           {activeTab==='social' && (
             <div className="p-5 space-y-6">
-              {/* Upload — officer+ only */}
+              {/* Upload - officer+ only */}
               {canEdit && (
                 <div>
                   <p className="text-[11px] font-mono font-semibold text-ct-text mb-1 flex items-center gap-2">
@@ -1690,7 +1690,7 @@ export default function Complaints() {
                 </div>
               )}
 
-              {/* Table — visible to all roles */}
+              {/* Table - visible to all roles */}
               {importedData?.social?.length > 0 && (
                 <div>
                   <div className="flex items-center justify-between mb-2">
@@ -1719,9 +1719,9 @@ export default function Complaints() {
                           <tr key={i} className="border-b border-ct-border/40 hover:bg-white/[0.02]">
                             <td className="px-3 py-2 text-[11px] font-mono text-ct-purple">{r.from}</td>
                             <td className="px-3 py-2"><span className="text-[10px] font-mono px-1.5 py-0.5 bg-ct-purple/10 text-ct-purple rounded">{r.relationship}</span></td>
-                            <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.to||'—'}</td>
-                            <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.frequency||'—'}</td>
-                            <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.date||'—'}</td>
+                            <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.to||'-'}</td>
+                            <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.frequency||'-'}</td>
+                            <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.date||'-'}</td>
                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.source}</td>
                             {canEdit && (
                               <td className="px-3 py-2">
@@ -1744,11 +1744,11 @@ export default function Complaints() {
               )}
               {importedData?.social?.length === 0 && !loadingImported && (
                 <p className="text-[11px] font-mono text-ct-muted text-center py-4">
-                  {canEdit ? 'No call records yet — upload CDR CSV or add manually below' : 'No call records imported yet'}
+                  {canEdit ? 'No call records yet - upload CDR CSV or add manually below' : 'No call records imported yet'}
                 </p>
               )}
 
-              {/* Manual entry — officer+ only */}
+              {/* Manual entry - officer+ only */}
               {canEdit && (
                 <div className="border-t border-ct-border pt-6">
                   <p className="text-[11px] font-mono font-semibold text-ct-text mb-3 flex items-center gap-2">
@@ -1779,7 +1779,7 @@ export default function Complaints() {
           {/* ── Shell Company ── */}
           {activeTab==='shell' && (
             <div className="p-5 space-y-6">
-              {/* Upload — officer+ only */}
+              {/* Upload - officer+ only */}
               {canEdit && (
                 <div>
                   <p className="text-[11px] font-mono font-semibold text-ct-text mb-1 flex items-center gap-2">
@@ -1791,7 +1791,7 @@ export default function Complaints() {
                 </div>
               )}
 
-              {/* Table — visible to all roles */}
+              {/* Table - visible to all roles */}
               {importedData?.shell?.length > 0 && (
                 <div>
                   <div className="flex items-center justify-between mb-2">
@@ -1819,9 +1819,9 @@ export default function Complaints() {
                         {importedData.shell.map((r,i)=>(
                           <tr key={i} className="border-b border-ct-border/40 hover:bg-white/[0.02]">
                             <td className="px-3 py-2 text-[11px] font-mono text-ct-amber">{r.din}</td>
-                            <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.director_name||'—'}</td>
+                            <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.director_name||'-'}</td>
                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.cin}</td>
-                            <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.company_name||'—'}</td>
+                            <td className="px-3 py-2 text-[11px] font-mono text-ct-text">{r.company_name||'-'}</td>
                             <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.designation||'Director'}</td>
                             <td className="px-3 py-2">
                               <span className={`text-[10px] font-mono px-1.5 py-0.5 rounded ${r.flagged?'bg-ct-red/10 text-ct-red':'bg-ct-green/10 text-ct-green'}`}>
@@ -1849,11 +1849,11 @@ export default function Complaints() {
               )}
               {importedData?.shell?.length === 0 && !loadingImported && (
                 <p className="text-[11px] font-mono text-ct-muted text-center py-4">
-                  {canEdit ? 'No company records yet — upload CSV or add manually below' : 'No company records imported yet'}
+                  {canEdit ? 'No company records yet - upload CSV or add manually below' : 'No company records imported yet'}
                 </p>
               )}
 
-              {/* Manual entry — officer+ only */}
+              {/* Manual entry - officer+ only */}
               {canEdit && (
                 <div className="border-t border-ct-border pt-6">
                   <p className="text-[11px] font-mono font-semibold text-ct-text mb-3 flex items-center gap-2">
@@ -1899,7 +1899,7 @@ export default function Complaints() {
                 </p>
               </div>
 
-              {/* Saved links table — visible to all roles */}
+              {/* Saved links table - visible to all roles */}
               {importedData?.bank_transfers?.length > 0 && (
                 <div className="mb-5">
                   <div className="flex items-center justify-between mb-2">
@@ -1928,9 +1928,9 @@ export default function Complaints() {
                           <tr key={i} className="border-b border-ct-border/40 hover:bg-white/[0.02]">
                             <td className="px-3 py-2 text-[11px] font-mono text-ct-cyan">{r.from}</td>
                             <td className="px-3 py-2 text-[11px] font-mono text-ct-cyan">{r.to}</td>
-                            <td className="px-3 py-2 text-[11px] font-mono text-ct-amber">{r.amount?`₹${Number(r.amount).toLocaleString('en-IN')}`:'—'}</td>
-                            <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.date||'—'}</td>
-                            <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.reference||'—'}</td>
+                            <td className="px-3 py-2 text-[11px] font-mono text-ct-amber">{r.amount?`₹${Number(r.amount).toLocaleString('en-IN')}`:'-'}</td>
+                            <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.date||'-'}</td>
+                            <td className="px-3 py-2 text-[11px] font-mono text-ct-muted">{r.reference||'-'}</td>
                             {canEdit && (
                               <td className="px-3 py-2">
                                 <RowActions
@@ -1951,7 +1951,7 @@ export default function Complaints() {
                 </div>
               )}
 
-              {/* Link form — officer+ only */}
+              {/* Link form - officer+ only */}
               {canEdit ? (<>
                 <p className="text-[10px] font-mono text-ct-muted uppercase tracking-widest mb-2">Quick fill examples</p>
                 <div className="grid grid-cols-3 gap-2 mb-5">
@@ -2019,7 +2019,7 @@ export default function Complaints() {
           </div>
         </div>
         {complaints.length === 0 ? (
-          <div className="py-10 text-center text-ct-muted text-sm font-mono">No complaints yet — upload a CSV or add one manually above</div>
+          <div className="py-10 text-center text-ct-muted text-sm font-mono">No complaints yet - upload a CSV or add one manually above</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
@@ -2034,15 +2034,15 @@ export default function Complaints() {
                 {complaints.map((c,i)=>(
                   <tr key={i} className="border-b border-ct-border/40 hover:bg-white/[0.02] transition-colors">
                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-cyan whitespace-nowrap">{c.complaint_id}</td>
-                    <td className="px-4 py-2.5 text-[11px] font-mono text-ct-text">{c.complainant_name||'—'}</td>
-                    <td className="px-4 py-2.5 text-[11px] font-mono text-ct-purple">{c.complainant_phone||'—'}</td>
-                    <td className="px-4 py-2.5 text-[11px] font-mono text-ct-text">{c.fraud_upi_id||'—'}</td>
+                    <td className="px-4 py-2.5 text-[11px] font-mono text-ct-text">{c.complainant_name||'-'}</td>
+                    <td className="px-4 py-2.5 text-[11px] font-mono text-ct-purple">{c.complainant_phone||'-'}</td>
+                    <td className="px-4 py-2.5 text-[11px] font-mono text-ct-text">{c.fraud_upi_id||'-'}</td>
                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-amber whitespace-nowrap">
-                      {c.amount_inr?`₹${Number(c.amount_inr).toLocaleString('en-IN')}`:'—'}
+                      {c.amount_inr?`₹${Number(c.amount_inr).toLocaleString('en-IN')}`:'-'}
                     </td>
-                    <td className="px-4 py-2.5 text-[11px] font-mono text-ct-muted">{c.fir_number||'—'}</td>
+                    <td className="px-4 py-2.5 text-[11px] font-mono text-ct-muted">{c.fir_number||'-'}</td>
                     <td className="px-4 py-2.5 text-[11px] font-mono text-ct-muted whitespace-nowrap">
-                      {c.transaction_date?new Date(c.transaction_date).toLocaleDateString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric'}):'—'}
+                      {c.transaction_date?new Date(c.transaction_date).toLocaleDateString('en-IN',{timeZone:'Asia/Kolkata',day:'2-digit',month:'short',year:'numeric'}):'-'}
                     </td>
                     <td className="px-4 py-2.5">
                       <span className={clsx('text-[10px] font-mono px-2 py-0.5 rounded whitespace-nowrap',

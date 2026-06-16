@@ -1,5 +1,5 @@
 """
-app/api/routes/multi.py — Multi-layer Graph endpoints
+app/api/routes/multi.py - Multi-layer Graph endpoints
 """
 from app.services.audit_service import audit_service
 from app.core.auth import get_current_user
@@ -18,7 +18,7 @@ _combiner = MultiLayerCombiner()
 
 
 class MultiTraceRequest(BaseModel):
-    identifier: str = Field(..., description="Any identifier — auto-detected per module")
+    identifier: str = Field(..., description="Any identifier - auto-detected per module")
     depth: int = Field(default=2, ge=1, le=5)
     force_refresh: bool = False
     modules: list[str] = Field(

@@ -1,5 +1,5 @@
 // src/components/SearchBar.jsx
-// Global entity search — searches across all saved nodes in Neo4j
+// Global entity search - searches across all saved nodes in Neo4j
 
 import { useState, useRef, useEffect } from 'react'
 import { Search, X, Bitcoin, CreditCard, Building2, Phone, User } from 'lucide-react'

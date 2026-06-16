@@ -13,7 +13,7 @@ const COLORS = {
   company:      { bg:'#431407', border:'#f59e0b', text:'#fcd34d' },
   person:       { bg:'#1e2a40', border:'#64748b', text:'#94a3b8' },
   exchange:     { bg:'#1a3040', border:'#06b6d4', text:'#67e8f9' },
-  mule:         { bg:'#431407', border:'#f97316', text:'#fdba74' },  // amber — mule/layering account
+  mule:         { bg:'#431407', border:'#f97316', text:'#fdba74' },  // amber - mule/layering account
   flagged:      { bg:'#450a0a', border:'#ef4444', text:'#fca5a5' },
   unknown:      { bg:'#1e2530', border:'#475569', text:'#94a3b8' },
 }
@@ -275,7 +275,7 @@ const GraphCanvas = forwardRef(function GraphCanvas({ graph, onNodeClick }, ref)
         onNodeClick?.({ ...nodeData, connections, neighbours: neighbourList })
       })
 
-      // Edge click — show edge details
+      // Edge click - show edge details
       cyRef.current.on('tap', 'edge', evt => {
         const ed = evt.target
         cyRef.current.elements().removeClass('hi faded')

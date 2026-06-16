@@ -36,7 +36,7 @@ function validateCsvRow(row, lineNum) {
   }
   const sev = (row.severity || 'medium').toLowerCase()
   if (row.severity && !VALID_SEV.includes(sev)) {
-    errors.push(`Row ${lineNum}: invalid severity "${row.severity}" — must be high/medium/low`)
+    errors.push(`Row ${lineNum}: invalid severity "${row.severity}" - must be high/medium/low`)
   }
   const cnt = row.complaint_count
   if (cnt && isNaN(Number(cnt))) {
@@ -212,7 +212,7 @@ function CsvUploadPanel({ onImported }) {
         </label>
       )}
 
-      {/* File picked — validation result */}
+      {/* File picked - validation result */}
       {file && preview && (
         <div className="space-y-3">
           <div className="flex items-center justify-between">
@@ -274,7 +274,7 @@ function CsvUploadPanel({ onImported }) {
                       {preview.rows.slice(0, 10).map((row, i) => (
                         <tr key={i} className="border-b border-ct-border/40">
                           {preview.headers.filter(h => ALLOWED_COLS.includes(h)).map(h => (
-                            <td key={h} className="px-3 py-1.5 text-ct-muted">{row[h] || '—'}</td>
+                            <td key={h} className="px-3 py-1.5 text-ct-muted">{row[h] || '-'}</td>
                           ))}
                         </tr>
                       ))}
@@ -420,7 +420,7 @@ export default function Blacklist() {
     })
 
   const formatDate = (dt) => {
-    if (!dt) return '—'
+    if (!dt) return '-'
     try { return new Date(dt).toLocaleString('en-IN', { timeZone:'Asia/Kolkata', day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true }) }
     catch { return dt }
   }
@@ -505,7 +505,7 @@ export default function Blacklist() {
                   ? <AlertTriangle size={14} className="text-ct-red"/>
                   : <CheckCircle size={14} className="text-ct-green"/>}
                 <span className={clsx('text-sm font-mono font-semibold', result.flagged ? 'text-ct-red' : 'text-ct-green')}>
-                  {result.flagged ? `${result.hit_count} match${result.hit_count > 1 ? 'es' : ''} found` : 'Clean — not flagged'}
+                  {result.flagged ? `${result.hit_count} match${result.hit_count > 1 ? 'es' : ''} found` : 'Clean - not flagged'}
                 </span>
               </div>
               {result.hits?.map((hit, i) => (
@@ -610,7 +610,7 @@ export default function Blacklist() {
           <div className="py-12 text-center text-ct-muted text-sm font-mono">Loading…</div>
         ) : filtered.length === 0 ? (
           <div className="py-12 text-center text-ct-muted text-sm font-mono">
-            {total === 0 ? 'No blacklisted entries yet — add one or import a CSV' : 'No entries match your search'}
+            {total === 0 ? 'No blacklisted entries yet - add one or import a CSV' : 'No entries match your search'}
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -652,7 +652,7 @@ export default function Blacklist() {
                     </td>
                     <td className="px-4 py-3 max-w-xs">
                       <span className="text-[11px] font-mono text-ct-muted truncate block" title={entry.reason}>
-                        {entry.reason || '—'}
+                        {entry.reason || '-'}
                       </span>
                     </td>
                     <td className="px-4 py-3">

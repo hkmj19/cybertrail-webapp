@@ -7,11 +7,11 @@ Checks identifiers against known fraud/sanction lists.
 Supports multiple list sources and stores results in Neo4j.
 
 SUPPORTED LISTS:
-  1. Internal CyberTrail blacklist  — built from confirmed fraud investigations
-  2. OFAC SDN list                  — US sanctions (wallets of sanctioned entities)
-  3. I4C / NCRP flagged list        — India Cybercrime Coordination Centre
-  4. RBI defaulter registry         — Reserve Bank of India
-  5. Chainalysis (if API key set)   — crypto-specific risk scoring
+  1. Internal CyberTrail blacklist  - built from confirmed fraud investigations
+  2. OFAC SDN list                  - US sanctions (wallets of sanctioned entities)
+  3. I4C / NCRP flagged list        - India Cybercrime Coordination Centre
+  4. RBI defaulter registry         - Reserve Bank of India
+  5. Chainalysis (if API key set)   - crypto-specific risk scoring
 
 USAGE:
     from app.services.blacklist_service import blacklist_service
@@ -40,7 +40,7 @@ class BlacklistService:
     Uses Neo4j for persistence and Redis for caching hot lookups.
     """
 
-    # Cache TTL for blacklist hits (10 minutes — balance freshness vs speed)
+    # Cache TTL for blacklist hits (10 minutes - balance freshness vs speed)
     CACHE_TTL = 600
 
     def __init__(self):
@@ -51,13 +51,13 @@ class BlacklistService:
     async def check(self, identifier: str) -> list[dict]:
         """
         Checks an identifier against ALL configured blacklists.
-        Returns list of hits — empty list means clean.
+        Returns list of hits - empty list means clean.
 
         Each hit contains:
-          source    — which blacklist matched (internal/ofac/i4c/rbi)
-          reason    — why it was flagged
-          severity  — high/medium/low
-          added_at  — when it was added to the list
+          source    - which blacklist matched (internal/ofac/i4c/rbi)
+          reason    - why it was flagged
+          severity  - high/medium/low
+          added_at  - when it was added to the list
 
         Results are cached in Redis for CACHE_TTL seconds.
         """
@@ -78,7 +78,7 @@ class BlacklistService:
 
     async def is_flagged(self, identifier: str) -> bool:
         """
-        Quick boolean check — is this identifier on ANY blacklist?
+        Quick boolean check - is this identifier on ANY blacklist?
         Useful for fast risk pre-screening before deep trace.
         """
         hits = await self.check(identifier)
@@ -150,7 +150,7 @@ class BlacklistService:
     async def _check_i4c(self, identifier: str) -> list[dict]:
         """
         Checks against India Cybercrime Coordination Centre (I4C) flagged list.
-        I4C aggregates NCRP complaint data — if a UPI/phone appears in 5+ complaints
+        I4C aggregates NCRP complaint data - if a UPI/phone appears in 5+ complaints
         across India, it's flagged here.
 
         In production: integrate with the official I4C API (requires law enforcement credentials).
@@ -171,7 +171,7 @@ class BlacklistService:
                     severity = "high" if count >= 5 else "medium"
                     return [{
                         "source": "I4C / NCRP",
-                        "reason": f"{count} NCRP complaints — fraud type: {record['fraud_type'] or 'unknown'}",
+                        "reason": f"{count} NCRP complaints - fraud type: {record['fraud_type'] or 'unknown'}",
                         "severity": severity,
                         "list": "India Cybercrime Coordination Centre",
                     }]

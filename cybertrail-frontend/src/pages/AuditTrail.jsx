@@ -1,4 +1,4 @@
-// src/pages/AuditTrail.jsx — Immutable audit log viewer
+// src/pages/AuditTrail.jsx - Immutable audit log viewer
 import { useState, useEffect, useCallback } from 'react'
 import { Shield, Search, Clock, User, AlertTriangle, X, RefreshCw, Loader2, ChevronDown, ChevronRight, UserX } from 'lucide-react'
 import toast from 'react-hot-toast'
@@ -80,11 +80,11 @@ function AuditRow({ log }) {
                   <div className="space-y-1">
                     <div className="flex items-start gap-2">
                       <span className="text-[10px] text-ct-red font-mono w-8 flex-shrink-0">FROM</span>
-                      <span className="text-[11px] font-mono text-ct-red bg-ct-red/5 rounded px-2 py-1 flex-1 break-all whitespace-pre-wrap">{String(change.from || '—')}</span>
+                      <span className="text-[11px] font-mono text-ct-red bg-ct-red/5 rounded px-2 py-1 flex-1 break-all whitespace-pre-wrap">{String(change.from || '-')}</span>
                     </div>
                     <div className="flex items-start gap-2">
                       <span className="text-[10px] text-ct-green font-mono w-8 flex-shrink-0">TO</span>
-                      <span className="text-[11px] font-mono text-ct-green bg-ct-green/5 rounded px-2 py-1 flex-1 break-all whitespace-pre-wrap">{String(change.to || '—')}</span>
+                      <span className="text-[11px] font-mono text-ct-green bg-ct-green/5 rounded px-2 py-1 flex-1 break-all whitespace-pre-wrap">{String(change.to || '-')}</span>
                     </div>
                   </div>
                 ) : (
@@ -93,7 +93,7 @@ function AuditRow({ log }) {
                       ? Object.entries(change).map(([k, v]) => (
                           <div key={k} className="flex items-start gap-2">
                             <span className="text-[10px] text-ct-muted font-mono w-32 flex-shrink-0 capitalize">{k.replace(/_/g, ' ')}</span>
-                            <span className="text-[11px] font-mono text-ct-text break-all">{String(v || '—')}</span>
+                            <span className="text-[11px] font-mono text-ct-text break-all">{String(v || '-')}</span>
                           </div>
                         ))
                       : <span className="text-[11px] font-mono text-ct-text break-all whitespace-pre-wrap">{JSON.stringify(change, null, 2)}</span>
@@ -113,7 +113,7 @@ function AuditRow({ log }) {
 function StatsTable({ rows, knownUsernames, title, color = 'text-ct-text', icon }) {
   const fmt = (ts) => ts
     ? new Date(ts).toLocaleString('en-IN', { timeZone:'Asia/Kolkata', day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true })
-    : '—'
+    : '-'
 
   return (
     <div className="bg-ct-surface border border-ct-border rounded-xl overflow-hidden">
@@ -146,7 +146,7 @@ function StatsTable({ rows, knownUsernames, title, color = 'text-ct-text', icon 
                     )}
                   </td>
                   <td className="px-3 py-2.5">
-                    <span className="text-[10px] font-mono text-ct-muted capitalize">{s.role || '—'}</span>
+                    <span className="text-[10px] font-mono text-ct-muted capitalize">{s.role || '-'}</span>
                   </td>
                   <td className="px-3 py-2.5 text-xs font-mono text-ct-text font-semibold">{s.total_actions}</td>
                   <td className="px-3 py-2.5 text-xs font-mono text-ct-green">{s.creates}</td>
@@ -193,7 +193,7 @@ export default function AuditTrail() {
       setStats(statsRes.data.officer_stats || [])
       setUsers(usersRes.data || [])
     } catch(e) {
-      // listUsers might 403 for officer role — still load logs
+      // listUsers might 403 for officer role - still load logs
       try {
         const [logsRes, statsRes] = await Promise.all([
           api.get('/audit/', { params: { action: filterAction || undefined, entity: filterEntity || undefined, limit: 200 }}),
@@ -214,7 +214,7 @@ export default function AuditTrail() {
   const activeStats  = stats.filter(s => knownUsernames.size === 0 || knownUsernames.has(s.username))
   const deletedStats = stats.filter(s => knownUsernames.size > 0  && !knownUsernames.has(s.username))
 
-  // Flag suspicious — many deletes
+  // Flag suspicious - many deletes
   const suspicious = stats.filter(s => s.deletes > 3)
 
   const filtered = logs.filter(l =>
@@ -234,7 +234,7 @@ export default function AuditTrail() {
             <Shield size={18} className="text-ct-blue"/> Audit Trail
           </h1>
           <p className="text-xs text-ct-muted mt-0.5">
-            Immutable log of all data changes — cannot be edited or deleted
+            Immutable log of all data changes - cannot be edited or deleted
           </p>
         </div>
         <button onClick={load} disabled={loading}
@@ -252,14 +252,14 @@ export default function AuditTrail() {
           </div>
           {suspicious.map(s => (
             <p key={s.username} className="text-[11px] font-mono text-ct-red/80">
-              ● {s.username} {s.badge_id ? `(${s.badge_id})` : ''} — {s.deletes} deletions.
+              ● {s.username} {s.badge_id ? `(${s.badge_id})` : ''} - {s.deletes} deletions.
               {!knownUsernames.has(s.username) && knownUsernames.size > 0 && ' ⚠ Account no longer exists.'}
             </p>
           ))}
         </div>
       )}
 
-      {/* Officer Activity — split into active vs deleted */}
+      {/* Officer Activity - split into active vs deleted */}
       {stats.length > 0 && (
         <div className="space-y-4 mb-5">
           <StatsTable

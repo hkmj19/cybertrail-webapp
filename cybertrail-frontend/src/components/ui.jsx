@@ -47,7 +47,7 @@ export function MetricCard({ label, value, sub, color = 'text-ct-text', icon: Ic
         </div>
       )}
       <div className={clsx('text-2xl font-semibold font-mono mb-0.5', color)}>
-        {value ?? '—'}
+        {value ?? '-'}
       </div>
       <div className="text-xs text-ct-muted">{label}</div>
       {sub && <div className="text-[10px] text-ct-muted/60 mt-0.5">{sub}</div>}

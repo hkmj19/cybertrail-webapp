@@ -11,7 +11,7 @@
 // ── Clean slate ──────────────────────────────────────────
 MATCH (n) DETACH DELETE n;
 
-// ── Crypto layer — Bitcoin wallets ───────────────────────
+// ── Crypto layer - Bitcoin wallets ───────────────────────
 CREATE (w1:Wallet {
     address: 'bc1qxy2kgdygjrsqtzq2n0yrf2498gq8yh8d24',
     label: 'bc1qxy…d24',
@@ -59,7 +59,7 @@ CREATE (a)-[:CRYPTO_TX {
     timestamp: datetime('2024-01-16T08:15:00')
 }]->(b);
 
-// ── UPI layer — mule chain ───────────────────────────────
+// ── UPI layer - mule chain ───────────────────────────────
 CREATE (u1:UpiAccount {
     upi_id: 'fraud@paytm',
     label: 'fraud@paytm',
@@ -112,7 +112,7 @@ CREATE (a)-[:UPI_TX {
     timestamp: datetime('2024-01-11T09:45:00')
 }]->(b);
 
-// ── Social layer — phone hub ─────────────────────────────
+// ── Social layer - phone hub ─────────────────────────────
 CREATE (p1:Phone {
     number: '9000000000',
     label: '+91 9000000000',
@@ -186,7 +186,7 @@ CREATE (a)-[:SUBSIDIARY {ownership_pct: 60}]->(b);
 // Phone that controls the UPI also linked to shell company director
 MATCH (ph:Phone {number: '9000000000'})
 MATCH (p:Person {din: '00000001'})
-CREATE (ph)-[:LINKED_TO {note: 'Same individual — cross-layer link'}]->(p);
+CREATE (ph)-[:LINKED_TO {note: 'Same individual - cross-layer link'}]->(p);
 
 // Return summary
 MATCH (n) RETURN labels(n)[0] AS type, count(n) AS count ORDER BY count DESC;

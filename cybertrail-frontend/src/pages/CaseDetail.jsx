@@ -1,4 +1,4 @@
-// src/pages/CaseDetail.jsx — Full case detail with notes, traces, status management
+// src/pages/CaseDetail.jsx - Full case detail with notes, traces, status management
 import { useState, useEffect, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import {
@@ -65,7 +65,7 @@ export default function CaseDetail() {
     } finally { setLoading(false) }
   }, [caseId])
 
-  // Load assignable users separately — depends on user.role being available
+  // Load assignable users separately - depends on user.role being available
   useEffect(() => {
     if (!['admin','supervisor'].includes(user?.role)) return
     listUsers()
@@ -106,7 +106,7 @@ export default function CaseDetail() {
   }
 
   const saveCurrentTrace = async () => {
-    if (!graph) { toast.error('No active trace — run a trace in Investigate first'); return }
+    if (!graph) { toast.error('No active trace - run a trace in Investigate first'); return }
     setSavingTrace(true)
     try {
       await attachTrace(caseId, {
@@ -212,7 +212,7 @@ export default function CaseDetail() {
         </div>
       </div>
 
-      {/* Quick status change — hidden for analysts */}
+      {/* Quick status change - hidden for analysts */}
       {!editing && user?.role !== 'analyst' && (
         <div className="flex items-center gap-2 mb-4">
           <span className="text-[10px] text-ct-muted font-mono">Change status:</span>
@@ -482,7 +482,7 @@ export default function CaseDetail() {
       {/* ── NOTES TAB ── */}
       {activeTab === 'notes' && (
         <div className="space-y-4">
-          {/* Add note — hidden for analysts */}
+          {/* Add note - hidden for analysts */}
           {user?.role !== 'analyst' && !['closed','archived'].includes(cas.status) && (
             <div className="bg-ct-surface border border-ct-border rounded-xl p-4">
               <h3 className="text-[10px] text-ct-muted uppercase font-mono tracking-widest mb-3">Add Note</h3>
@@ -534,7 +534,7 @@ export default function CaseDetail() {
       {/* ── TRACES TAB ── */}
       {activeTab === 'traces' && (
         <div className="space-y-4">
-          {/* Save current trace — hidden for analysts */}
+          {/* Save current trace - hidden for analysts */}
           {graph && user?.role !== 'analyst' && !['closed','archived'].includes(cas.status) && (
             <div className="bg-ct-surface border border-ct-green/20 rounded-xl p-4">
               <div className="flex items-center justify-between">
@@ -617,7 +617,7 @@ function TraceCard({ trace: t }) {
 
   return (
     <div className="bg-ct-surface border border-ct-border rounded-xl overflow-hidden">
-      {/* Header — always visible, click to expand */}
+      {/* Header - always visible, click to expand */}
       <button
         onClick={() => setOpen(v => !v)}
         className="w-full flex items-center justify-between p-4 hover:bg-white/[0.02] transition-colors text-left"
@@ -663,7 +663,7 @@ function TraceCard({ trace: t }) {
               { label:'Flagged',        value:t.flagged,       color:'text-ct-red'  },
               { label:'Fraud Amount',   value:t.graph_data?.total_value_inr
                   ? `₹${(t.graph_data.total_value_inr/100000).toFixed(2)}L`
-                  : '—',                                       color:'text-ct-amber'},
+                  : '-',                                       color:'text-ct-amber'},
             ].map(s => (
               <div key={s.label} className="bg-ct-surface border border-ct-border rounded-lg p-3 text-center">
                 <div className={clsx('text-lg font-bold font-mono', s.color)}>{s.value}</div>
@@ -758,7 +758,7 @@ function TraceCard({ trace: t }) {
                             n.risk_level === 'high'   ? 'text-ct-red' :
                             n.risk_level === 'medium' ? 'text-ct-amber' :
                             n.risk_level === 'low'    ? 'text-ct-green' : 'text-ct-muted'
-                          )}>{n.risk_level || '—'}</span>
+                          )}>{n.risk_level || '-'}</span>
                         </td>
                         <td className="px-3 py-1.5">
                           {n.flagged

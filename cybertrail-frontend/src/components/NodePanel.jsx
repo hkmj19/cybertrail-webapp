@@ -1,4 +1,4 @@
-// src/components/NodePanel.jsx — Enhanced node/edge detail panel
+// src/components/NodePanel.jsx - Enhanced node/edge detail panel
 import { X, AlertTriangle, Copy, Flag, Loader2, ArrowRight, ArrowLeft, ArrowLeftRight, Network } from 'lucide-react'
 import { checkBlacklist, addToBlacklist } from '../services/api'
 import { useState, useEffect } from 'react'
@@ -221,7 +221,7 @@ export default function NodePanel({ node, onClose }) {
           <div className="px-4 py-2.5 border-b border-ct-border bg-ct-red/5 flex-shrink-0">
             <p className="text-[10px] text-ct-red uppercase tracking-widest mb-1 font-mono font-semibold">⚠ Blacklist Match</p>
             {blacklistHits.map((hit, i) => (
-              <div key={i} className="text-[11px] font-mono text-ct-red/80">{hit.source} — {hit.reason}</div>
+              <div key={i} className="text-[11px] font-mono text-ct-red/80">{hit.source} - {hit.reason}</div>
             ))}
           </div>
         )}
@@ -239,7 +239,7 @@ export default function NodePanel({ node, onClose }) {
           ))}
         </div>
 
-        {/* Tab content — scrollable */}
+        {/* Tab content - scrollable */}
         <div className="overflow-y-auto flex-1 min-h-0" style={{maxHeight:'420px'}}>
 
           {/* ── INFO TAB ── */}

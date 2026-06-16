@@ -24,7 +24,7 @@ from app.core.config import settings
 def setup_logging():
     """
     Configures Loguru for the application.
-    Call once at startup — already called in main.py.
+    Call once at startup - already called in main.py.
     """
     # Remove Loguru's default handler
     _loguru_logger.remove()
@@ -38,7 +38,7 @@ def setup_logging():
             format=(
                 "<green>{time:HH:mm:ss}</green> | "
                 "<level>{level: <8}</level> | "
-                "<cyan>{name}</cyan>:<cyan>{line}</cyan> — "
+                "<cyan>{name}</cyan>:<cyan>{line}</cyan> - "
                 "<level>{message}</level>"
             ),
             colorize=True,

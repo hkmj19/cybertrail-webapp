@@ -1,4 +1,4 @@
-# app/core/__init__.py — exports core infrastructure singletons
+# app/core/__init__.py - exports core infrastructure singletons
 from app.core.config import settings
 from app.core.database import db_manager
 from app.core.cache import cache_manager

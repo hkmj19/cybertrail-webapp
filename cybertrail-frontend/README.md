@@ -3,13 +3,13 @@
 React + Vite frontend for the CyberTrail financial crime investigation platform.
 
 ## Stack
-- **React 18** — UI framework
-- **Vite** — dev server + bundler
-- **Cytoscape.js** — graph visualization engine
-- **Zustand** — global state
-- **Tailwind CSS** — styling
-- **Recharts** — stats charts
-- **React Router v6** — routing
+- **React 18** - UI framework
+- **Vite** - dev server + bundler
+- **Cytoscape.js** - graph visualization engine
+- **Zustand** - global state
+- **Tailwind CSS** - styling
+- **Recharts** - stats charts
+- **React Router v6** - routing
 
 ## Setup
 
@@ -42,5 +42,5 @@ Make sure the FastAPI backend is running before starting the UI.
 
 ```bash
 npm run build
-# Output in dist/ — serve with nginx or any static file server
+# Output in dist/ - serve with nginx or any static file server
 ```

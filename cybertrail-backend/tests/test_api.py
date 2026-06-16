@@ -2,7 +2,7 @@
 tests/test_api.py
 ──────────────────
 Integration tests for the FastAPI endpoints.
-Uses httpx.AsyncClient with TestClient — no real Neo4j/Redis needed.
+Uses httpx.AsyncClient with TestClient - no real Neo4j/Redis needed.
 All external dependencies are mocked.
 """
 

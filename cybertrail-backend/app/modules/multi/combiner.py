@@ -68,7 +68,7 @@ class MultiLayerCombiner:
         Runs selected modules on the same identifier and merges results.
 
         Args:
-            identifier:    The seed (wallet, UPI, phone, CIN — auto-detected per module)
+            identifier:    The seed (wallet, UPI, phone, CIN - auto-detected per module)
             depth:         Hop depth for each module
             force_refresh: Bypass cache
             modules:       Which modules to run. None = all 4.
@@ -164,7 +164,7 @@ class MultiLayerCombiner:
         """
         for node in result.nodes:
             if node.id in all_nodes:
-                # Node seen in another layer — merge metadata
+                # Node seen in another layer - merge metadata
                 existing = all_nodes[node.id]
                 existing.metadata["layers"] = list(
                     set(existing.metadata.get("layers", []) + [layer])
@@ -185,7 +185,7 @@ class MultiLayerCombiner:
             if edge.source in all_nodes and edge.target in all_nodes:
                 edge.metadata["layer"] = layer
                 all_edges.append(edge)
-            # else: silently drop — the node will appear but without this edge
+            # else: silently drop - the node will appear but without this edge
 
     def _find_cross_layer_links(
         self,
@@ -194,7 +194,7 @@ class MultiLayerCombiner:
     ) -> list[GraphEdge]:
         """
         Previously created phantom edges with prefixed IDs like crypto:fraud@paytm
-        which do not match any real node IDs — causing Cytoscape to render nothing.
+        which do not match any real node IDs - causing Cytoscape to render nothing.
         Now returns empty list. Multi-layer info is shown via node metadata (layers tag).
         """
         multi_count = sum(

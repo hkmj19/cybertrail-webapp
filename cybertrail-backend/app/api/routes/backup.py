@@ -41,7 +41,7 @@ def _now() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-SALT = b"CyberTrailBackup"   # fixed salt — password is already strong
+SALT = b"CyberTrailBackup"   # fixed salt - password is already strong
 
 def _make_fernet(password: str) -> Fernet:
     """Derive a Fernet key from the backup password using PBKDF2."""
@@ -88,7 +88,7 @@ async def export_backup(
             "created_at": _now(),
             "created_by": current_user.username,
             "platform": "CyberTrail",
-            "description": "Full data backup — all modules",
+            "description": "Full data backup - all modules",
         },
         "data": {}
     }
@@ -408,13 +408,13 @@ async def backup_status(
 def _get_recommendations(stats: dict) -> list[str]:
     recs = []
     if stats.get("audit_logs", 0) > 5000:
-        recs.append("Audit log has 5000+ entries — consider full backup and archiving old logs")
+        recs.append("Audit log has 5000+ entries - consider full backup and archiving old logs")
     if stats.get("cases", 0) > 0:
         recs.append("Run daily incremental backups to protect case data")
     if stats.get("complaints", 0) > 100:
-        recs.append("Large complaint database — full backup recommended before any bulk operations")
+        recs.append("Large complaint database - full backup recommended before any bulk operations")
     if not recs:
-        recs.append("System healthy — schedule daily incremental backups via cron")
+        recs.append("System healthy - schedule daily incremental backups via cron")
     return recs
 
 
@@ -432,7 +432,7 @@ async def restore_backup(
     Restore from a backup .ct.enc (encrypted), .json.gz or .json file.
     Admin only.
 
-    encryption_password: optional — if provided, used to decrypt .ct.enc files.
+    encryption_password: optional - if provided, used to decrypt .ct.enc files.
                          Falls back to BACKUP_ENCRYPTION_PASSWORD from .env.
     dry_run=true: validates without writing.
     dry_run=false: restores via MERGE (updates existing, adds missing, nothing deleted).
@@ -447,7 +447,7 @@ async def restore_backup(
 
     try:
         if is_fernet or file.filename.endswith(".ct.enc"):
-            # AES-256 Fernet encrypted — decrypt first, then decompress
+            # AES-256 Fernet encrypted - decrypt first, then decompress
             restore_password = str(body.get("encryption_password", "")).strip() if body else ""
             password = restore_password or settings.BACKUP_ENCRYPTION_PASSWORD
             try:
@@ -456,11 +456,11 @@ async def restore_backup(
                 if restore_password and restore_password != settings.BACKUP_ENCRYPTION_PASSWORD:
                     raise HTTPException(
                         status_code=400,
-                        detail="Decryption failed — the password you entered is incorrect."
+                        detail="Decryption failed - the password you entered is incorrect."
                     )
                 raise HTTPException(
                     status_code=400,
-                    detail="Decryption failed — the backup was encrypted with a different password. Check BACKUP_ENCRYPTION_PASSWORD in your .env file."
+                    detail="Decryption failed - the backup was encrypted with a different password. Check BACKUP_ENCRYPTION_PASSWORD in your .env file."
                 )
             content = gzip.decompress(content)
         elif is_gzip or file.filename.endswith(".gz"):
@@ -748,11 +748,11 @@ async def factory_reset(
 ):
     """
     DANGER: Wipes ALL investigation data from Neo4j.
-    Restricted to the 'admin' account only (not any admin — specifically username='admin').
+    Restricted to the 'admin' account only (not any admin - specifically username='admin').
     Requires password confirmation.
 
     Preserves: User accounts (so you can still log in after reset).
-    Deletes: Everything else — complaints, cases, blacklist,
+    Deletes: Everything else - complaints, cases, blacklist,
              CDR, companies, directors, bank transfers, audit logs,
              graph nodes (wallets, UPI, phones, banks).
     """
@@ -793,7 +793,7 @@ async def factory_reset(
         officer_badge=current_user.badge_id,
         officer_role=current_user.role.value,
         ip_address=request.client.host if request.client else "unknown",
-        description="FACTORY RESET initiated — all investigation data will be deleted",
+        description="FACTORY RESET initiated - all investigation data will be deleted",
     )
 
     logger.critical(f"FACTORY RESET initiated by {current_user.username} from {request.client.host if request.client else 'unknown'}")
@@ -816,7 +816,7 @@ async def factory_reset(
         r = await s.run("MATCH (n:Blacklist) DETACH DELETE n RETURN count(n) AS c")
         rec = await r.single(); deleted["blacklist"] = rec["c"] if rec else 0
 
-        # Graph nodes — UPI, phones, wallets, banks, companies, directors
+        # Graph nodes - UPI, phones, wallets, banks, companies, directors
         r = await s.run("MATCH (n:UpiAccount) DETACH DELETE n RETURN count(n) AS c")
         rec = await r.single(); deleted["upi_accounts"] = rec["c"] if rec else 0
 
@@ -835,8 +835,8 @@ async def factory_reset(
         r = await s.run("MATCH (n:Director) DETACH DELETE n RETURN count(n) AS c")
         rec = await r.single(); deleted["directors"] = rec["c"] if rec else 0
 
-        # Audit logs — PRESERVED intentionally
-        # The audit trail is never deleted — it is the permanent record of all activity
+        # Audit logs - PRESERVED intentionally
+        # The audit trail is never deleted - it is the permanent record of all activity
         # even after a factory reset. This is required for legal and accountability purposes.
         r = await s.run("MATCH (n:AuditLog) RETURN count(n) AS c")
         rec = await r.single(); deleted["audit_logs_preserved"] = rec["c"] if rec else 0

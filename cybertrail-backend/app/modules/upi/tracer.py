@@ -89,7 +89,7 @@ class UPITracer:
         """
         Ingests a complaint CSV file (FIR data / NCRP export) into Neo4j.
 
-        Expected CSV columns (flexible — we map what we find):
+        Expected CSV columns (flexible - we map what we find):
           complaint_id, complainant_phone, fraud_upi_id, fraud_phone,
           fraud_bank_account, amount_inr, transaction_date, description
 
@@ -215,7 +215,7 @@ class UPITracer:
         # Check if this identifier is actually flagged in Neo4j
         is_flagged = await self._check_flagged(identifier, id_type)
 
-        # Add seed node — only flagged if it has actual complaints in DB
+        # Add seed node - only flagged if it has actual complaints in DB
         seed = self._make_node(identifier, id_type, flagged=is_flagged)
         nodes[identifier] = seed
 
@@ -286,7 +286,7 @@ class UPITracer:
                     return False
                 rec = await result.single()
                 if not rec:
-                    return False  # not in DB at all — clean unknown
+                    return False  # not in DB at all - clean unknown
                 return bool(rec.get("flagged") or (rec.get("cnt") or 0) > 0)
         except Exception:
             return False

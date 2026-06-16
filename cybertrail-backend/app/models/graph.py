@@ -69,7 +69,7 @@ class GraphNode(BaseModel):
     @field_validator('flagged', mode='before')
     @classmethod
     def coerce_flagged(cls, v):
-        # Neo4j returns None when property not set — treat as False
+        # Neo4j returns None when property not set - treat as False
         if v is None:
             return False
         return bool(v)

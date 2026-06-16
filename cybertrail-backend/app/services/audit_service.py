@@ -5,7 +5,7 @@ Immutable audit logging service.
 Call audit_service.log() from any route that modifies data.
 
 Design:
-- AuditLog nodes in Neo4j — append only, never deleted
+- AuditLog nodes in Neo4j - append only, never deleted
 - Stores: who, what, when, where (IP), before/after values
 - Even admin cannot delete audit logs (no delete endpoint exists)
 """
@@ -34,7 +34,7 @@ class AuditService:
     ):
         """
         Write an immutable audit entry to Neo4j.
-        This is fire-and-forget — errors are logged but never raised.
+        This is fire-and-forget - errors are logged but never raised.
         """
         try:
             audit_id  = str(uuid.uuid4())

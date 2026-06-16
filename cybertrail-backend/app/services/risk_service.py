@@ -31,10 +31,10 @@ SCORING SIGNALS:
     - Appears in multiple complaint records
 
 RISK LEVELS:
-  HIGH   — confirmed fraud indicators, immediate action recommended
-  MEDIUM — strong suspicious signals, warrant further investigation
-  LOW    — weak signals, monitor only
-  CLEAN  — no signals found
+  HIGH   - confirmed fraud indicators, immediate action recommended
+  MEDIUM - strong suspicious signals, warrant further investigation
+  LOW    - weak signals, monitor only
+  CLEAN  - no signals found
 """
 
 from loguru import logger
@@ -92,7 +92,7 @@ class RiskService:
         Returns list of matching blacklist sources.
 
         In production: integrate with:
-          - OFAC SDN list (US sanctions — wallets)
+          - OFAC SDN list (US sanctions - wallets)
           - Chainalysis KYT (crypto risk API)
           - I4C / NCRP internal blacklist
           - RBI defaulter list

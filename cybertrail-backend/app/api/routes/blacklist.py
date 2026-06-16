@@ -35,7 +35,7 @@ class AddBlacklistRequest(BaseModel):
 @router.get("/check/{identifier}")
 @limiter.limit("60/minute")
 async def check_blacklist(request: Request, identifier: str):
-    """Check identifier against all blacklists (internal, OFAC, I4C). No auth required — read-only."""
+    """Check identifier against all blacklists (internal, OFAC, I4C). No auth required - read-only."""
     try:
         hits = await blacklist_service.check(identifier)
         return {
@@ -155,7 +155,7 @@ async def sync_ofac(
 ):
     """
     Download and import the latest OFAC SDN sanctions list.
-    Requires Supervisor+ role. Slow operation — run on schedule.
+    Requires Supervisor+ role. Slow operation - run on schedule.
     """
     try:
         result = await blacklist_service.bulk_import_ofac()
@@ -187,7 +187,7 @@ async def delete_all_blacklist(
     """
     Delete ALL internal blacklist entries.
     Admin only. Logged in audit trail.
-    Does NOT delete I4C or OFAC entries — only internal ones.
+    Does NOT delete I4C or OFAC entries - only internal ones.
     """
     try:
         async with db_manager.session() as s:
@@ -229,7 +229,7 @@ async def list_blacklist(
     limit: int = Query(default=100),
     skip: int = Query(default=0),
 ):
-    """List all blacklisted entries with optional filters. No auth required — read-only."""
+    """List all blacklisted entries with optional filters. No auth required - read-only."""
     try:
         async with db_manager.session() as s:
             where_clauses = []
@@ -311,7 +311,7 @@ async def update_blacklist_entry(
 
 @router.get("/stats")
 async def blacklist_stats(request: Request):
-    """Returns counts for each blacklist source. Public read — no auth required."""
+    """Returns counts for each blacklist source. Public read - no auth required."""
     try:
         return await blacklist_service.get_stats()
     except Exception as e:

@@ -10,7 +10,7 @@ services:
       - "7687:7687"   # Bolt protocol (app connects here)
     environment:
       NEO4J_AUTH: neo4j/cybertrail123
-      NEO4J_PLUGINS: '["apoc"]'          # APOC — utility functions for graph ops
+      NEO4J_PLUGINS: '["apoc"]'          # APOC - utility functions for graph ops
       NEO4J_dbms_security_procedures_unrestricted: apoc.*
     volumes:
       - neo4j_data:/data

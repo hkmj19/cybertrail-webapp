@@ -1,4 +1,4 @@
-# Makefile — CyberTrail development commands
+# Makefile - CyberTrail development commands
 # Usage: make <target>
 # Requires: Python 3.11+, Docker, pip
 
@@ -7,7 +7,7 @@
 # ── Default target ────────────────────────────────────────
 help:
 	@echo ""
-	@echo "  CyberTrail — available commands"
+	@echo "  CyberTrail - available commands"
 	@echo "  ──────────────────────────────────────────"
 	@echo "  make install     Install Python dependencies"
 	@echo "  make docker-up   Start Neo4j + Redis via Docker"
@@ -41,7 +41,7 @@ docker-reset:
 	# WARNING: Destroys all Neo4j and Redis data
 	docker-compose down -v
 	docker-compose up -d
-	@echo "✓ Services reset — all data cleared."
+	@echo "✓ Services reset - all data cleared."
 
 # ── Development server ────────────────────────────────────
 dev: docker-up

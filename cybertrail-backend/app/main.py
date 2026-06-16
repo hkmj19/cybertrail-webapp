@@ -41,7 +41,7 @@ async def lifespan(app: FastAPI):
 
 # ── FastAPI app instance ─────────────────────────────────
 app = FastAPI(
-    title="CyberTrail — Financial Crime Investigation API",
+    title="CyberTrail - Financial Crime Investigation API",
     description="Graph intelligence platform for tracing financial crime networks.",
     version="1.0.0",
     docs_url="/docs",
@@ -84,14 +84,14 @@ app.include_router(backup.router,     prefix="/api/v1/backup",     tags=["Backup
 
 @app.get("/health", tags=["System"])
 async def health_check():
-    """Liveness probe — returns 200 if the API is running."""
+    """Liveness probe - returns 200 if the API is running."""
     return {"status": "ok", "version": "1.0.0"}
 
 
 @app.get("/api/v1/status", tags=["System"])
 async def system_status():
     """
-    Full system status — checks Neo4j and Redis connectivity.
+    Full system status - checks Neo4j and Redis connectivity.
     Called every 30 seconds by the UI sidebar to show online/offline.
     """
     neo4j_ok = False

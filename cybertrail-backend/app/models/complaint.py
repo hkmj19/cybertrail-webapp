@@ -91,7 +91,7 @@ class Complaint(BaseModel):
     assigned_to: Optional[str] = None       # officer name/badge
     district: Optional[str] = None
     police_station: Optional[str] = None
-    # Note: fir_number is defined above with validator — removed duplicate here
+    # Note: fir_number is defined above with validator - removed duplicate here
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
     updated_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
@@ -137,7 +137,7 @@ class ComplaintBatch(BaseModel):
 
 class ComplaintSummary(BaseModel):
     """
-    Aggregated statistics for a set of complaints —
+    Aggregated statistics for a set of complaints -
     used by the dashboard and stats endpoints.
     """
     total_complaints: int = 0

@@ -4,12 +4,12 @@ app/api/routes/complaints.py
 REST API endpoints for complaint management.
 
 Endpoints:
-  POST /api/v1/complaints/           — Create a single complaint
-  GET  /api/v1/complaints/{id}       — Get complaint by ID
-  GET  /api/v1/complaints/           — List complaints (filterable)
-  PUT  /api/v1/complaints/{id}       — Update complaint status
-  GET  /api/v1/complaints/summary    — Aggregated statistics
-  POST /api/v1/complaints/bulk       — Bulk create from CSV upload
+  POST /api/v1/complaints/           - Create a single complaint
+  GET  /api/v1/complaints/{id}       - Get complaint by ID
+  GET  /api/v1/complaints/           - List complaints (filterable)
+  PUT  /api/v1/complaints/{id}       - Update complaint status
+  GET  /api/v1/complaints/summary    - Aggregated statistics
+  POST /api/v1/complaints/bulk       - Bulk create from CSV upload
 """
 
 from fastapi import APIRouter, HTTPException, Request, Query, UploadFile, File

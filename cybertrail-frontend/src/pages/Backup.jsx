@@ -1,4 +1,4 @@
-// src/pages/Backup.jsx — Disaster Recovery & Backup
+// src/pages/Backup.jsx - Disaster Recovery & Backup
 import { useState, useEffect } from 'react'
 import {
   Download, Upload, Shield, Database, Clock,
@@ -15,7 +15,7 @@ const inp = 'w-full bg-ct-bg border border-ct-border rounded-lg px-3 py-2 text-s
 function StatPill({ label, value, color = 'text-ct-text' }) {
   return (
     <div className="bg-ct-bg rounded-lg px-3 py-2 border border-ct-border">
-      <div className={clsx('text-lg font-semibold font-mono', color)}>{value ?? '—'}</div>
+      <div className={clsx('text-lg font-semibold font-mono', color)}>{value ?? '-'}</div>
       <div className="text-[10px] text-ct-muted font-mono">{label}</div>
     </div>
   )
@@ -195,7 +195,7 @@ export default function Backup() {
               </span> by <span className="text-ct-blue">{lastBackup.by}</span>
             </p>
           ) : (
-            <p className="text-[11px] font-mono text-ct-red">No backup taken yet — export one now</p>
+            <p className="text-[11px] font-mono text-ct-red">No backup taken yet - export one now</p>
           )}
         </div>
 
@@ -223,7 +223,7 @@ export default function Backup() {
               <span className="text-xs font-mono font-semibold text-ct-text">Full Backup</span>
             </div>
             <p className="text-[11px] font-mono text-ct-muted mb-4 leading-relaxed">
-              Exports everything — complaints, cases, blacklist, CDR, company data, audit trail, users.
+              Exports everything - complaints, cases, blacklist, CDR, company data, audit trail, users.
               Compressed to <span className="text-ct-text">.json.gz</span> for smaller file size.
             </p>
             <div className="text-[10px] font-mono text-ct-muted mb-3 space-y-1">
@@ -248,7 +248,7 @@ export default function Backup() {
             </div>
             <p className="text-[11px] font-mono text-ct-muted mb-4 leading-relaxed">
               Exports only data added or changed in the last N hours.
-              Use for <span className="text-ct-text">daily automated backups</span> — much smaller file.
+              Use for <span className="text-ct-text">daily automated backups</span> - much smaller file.
             </p>
 
             <div className="mb-4">
@@ -281,7 +281,7 @@ export default function Backup() {
         </div>
       )}
 
-      {/* Restore section — Admin only */}
+      {/* Restore section - Admin only */}
       {isAdmin && (
         <div className="bg-ct-surface border border-ct-red/20 rounded-xl p-5 mb-5">
           <div className="flex items-center gap-2 mb-2">
@@ -293,7 +293,7 @@ export default function Backup() {
           <div className="flex items-start gap-2 p-3 bg-ct-amber/5 border border-ct-amber/20 rounded-lg mb-4">
             <AlertTriangle size={12} className="text-ct-amber flex-shrink-0 mt-0.5"/>
             <p className="text-[11px] font-mono text-ct-muted leading-relaxed">
-              Restore does <span className="text-ct-amber">MERGE</span> — not overwrite. Existing records are updated, new records are added. Nothing is deleted. Always do a dry-run preview first.
+              Restore does <span className="text-ct-amber">MERGE</span> - not overwrite. Existing records are updated, new records are added. Nothing is deleted. Always do a dry-run preview first.
             </p>
           </div>
 
@@ -321,7 +321,7 @@ export default function Backup() {
                     Backup: <span className="text-ct-muted font-normal">{restoreFile?.name}</span>
                   </p>
                   <p className="text-[10px] font-mono text-ct-muted">
-                    Created {dryRunResult.backup_created_at ? new Date(dryRunResult.backup_created_at).toLocaleString('en-IN', {timeZone:'Asia/Kolkata', day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true}) : '—'}
+                    Created {dryRunResult.backup_created_at ? new Date(dryRunResult.backup_created_at).toLocaleString('en-IN', {timeZone:'Asia/Kolkata', day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true}) : '-'}
                     {dryRunResult.backup_created_by && ` by ${dryRunResult.backup_created_by}`}
                   </p>
                 </div>
@@ -349,7 +349,7 @@ export default function Backup() {
 
               {restoreStep === 'done' && (
                 <div className="flex items-center gap-2 text-sm font-mono text-ct-green">
-                  <CheckCircle size={14}/> Restore complete — all records merged successfully
+                  <CheckCircle size={14}/> Restore complete - all records merged successfully
                 </div>
               )}
             </div>
@@ -364,7 +364,7 @@ export default function Backup() {
         </div>
       )}
 
-      {/* Factory Reset — system admin only */}
+      {/* Factory Reset - system admin only */}
       {isSystemAdmin && (
         <div className="bg-ct-surface border border-ct-red/40 rounded-xl p-5 mb-5">
           <div className="flex items-center gap-2 mb-3">

@@ -1,7 +1,7 @@
-# CyberTrail — Financial Crime Investigation Platform
+# CyberTrail - Financial Crime Investigation Platform
 
 An open-source graph intelligence tool built for Indian law enforcement agencies.
-Investigators can trace cryptocurrency wallets, UPI fraud chains, shell company networks, and social communication graphs — all visualised as an interactive node-link graph.
+Investigators can trace cryptocurrency wallets, UPI fraud chains, shell company networks, and social communication graphs - all visualised as an interactive node-link graph.
 
 Developed as part of a cybersecurity internship project for the Cybercrime Police Station, Amroha (UP Police).
 
@@ -11,10 +11,10 @@ Developed as part of a cybersecurity internship project for the Cybercrime Polic
 
 | Module | What You Can Trace |
 |--------|--------------------|
-| **Crypto Tracer** | Bitcoin, Ethereum, TRON wallet addresses — follows transaction hops to find connected wallets |
-| **UPI / Bank Fraud** | UPI IDs, phone numbers, bank accounts — maps mule account chains from complaint data |
-| **Shell Company** | Company CIN, Director DIN — uncovers beneficial ownership and struck-off companies via MCA21 |
-| **Social Graph** | Phone numbers / UPI IDs — builds communication networks and detects fraud hubs |
+| **Crypto Tracer** | Bitcoin, Ethereum, TRON wallet addresses - follows transaction hops to find connected wallets |
+| **UPI / Bank Fraud** | UPI IDs, phone numbers, bank accounts - maps mule account chains from complaint data |
+| **Shell Company** | Company CIN, Director DIN - uncovers beneficial ownership and struck-off companies via MCA21 |
+| **Social Graph** | Phone numbers / UPI IDs - builds communication networks and detects fraud hubs |
 | **Multi-Layer** | Combines all four above into one unified investigation graph |
 
 ---
@@ -26,8 +26,8 @@ Developed as part of a cybersecurity internship project for the Cybercrime Polic
 |------------|------|
 | Python 3.11+ | Core language |
 | FastAPI | REST API framework |
-| Neo4j 5.19 | Graph database — stores all investigation graphs |
-| Redis 7.2 | Caching — avoids repeated external API calls |
+| Neo4j 5.19 | Graph database - stores all investigation graphs |
+| Redis 7.2 | Caching - avoids repeated external API calls |
 | NetworkX | In-memory graph analysis (centrality, community detection) |
 | python-jose | JWT authentication |
 | bcrypt | Password hashing |
@@ -50,12 +50,12 @@ Developed as part of a cybersecurity internship project for the Cybercrime Polic
 ### External APIs Used
 | API | Purpose | Free Tier |
 |-----|---------|-----------|
-| Etherscan | Ethereum wallet and transaction data | Yes — etherscan.io |
-| BlockCypher | Bitcoin wallet and transaction data | Yes — blockcypher.com |
-| TronGrid | TRON / USDT wallet data | Yes — trongrid.io |
-| MCA21 (India) | Company and director registration data | Public — no key needed |
+| Etherscan | Ethereum wallet and transaction data | Yes - etherscan.io |
+| BlockCypher | Bitcoin wallet and transaction data | Yes - blockcypher.com |
+| TronGrid | TRON / USDT wallet data | Yes - trongrid.io |
+| MCA21 (India) | Company and director registration data | Public - no key needed |
 
-> The app works without API keys — crypto tracing returns empty graphs. UPI/Shell/Social modules use your uploaded complaint CSVs and Neo4j data.
+> The app works without API keys - crypto tracing returns empty graphs. UPI/Shell/Social modules use your uploaded complaint CSVs and Neo4j data.
 
 ---
 
@@ -63,7 +63,7 @@ Developed as part of a cybersecurity internship project for the Cybercrime Polic
 
 Install all three before setup:
 
-1. **Docker Desktop** — runs Neo4j (graph database) and Redis (cache)
+1. **Docker Desktop** - runs Neo4j (graph database) and Redis (cache)
    - Download: https://www.docker.com/products/docker-desktop
    - Start Docker Desktop after installing and wait for it to show "Running"
 
@@ -139,13 +139,13 @@ cyber-trail-webapp/
 
 ---
 
-## Setup — Step by Step
+## Setup - Step by Step
 
 You need **3 terminal windows** open simultaneously. Follow in order.
 
 ---
 
-### Terminal 1 — Start Databases
+### Terminal 1 - Start Databases
 
 ```bash
 cd cybertrail-backend
@@ -163,15 +163,15 @@ To wipe all data and restart fresh: `docker-compose down -v && docker-compose up
 
 ---
 
-### Terminal 2 — Start Backend API
+### Terminal 2 - Start Backend API
 
 ```bash
 cd cybertrail-backend
 
-# First time only — install Python packages
+# First time only - install Python packages
 pip install -r requirements.txt
 
-# First time only — create your config file
+# First time only - create your config file
 cp .env.example .env
 ```
 
@@ -202,7 +202,7 @@ API running at **http://localhost:8000**
 
 ---
 
-### Terminal 3 — Start Frontend UI
+### Terminal 3 - Start Frontend UI
 
 ```bash
 cd cybertrail-frontend
@@ -245,10 +245,10 @@ A default admin account is auto-created on first startup:
 
 | Role | What they can do |
 |------|-----------------|
-| **Admin** | Full access — create/delete users, reset any password, factory reset, view all audit logs |
+| **Admin** | Full access - create/delete users, reset any password, factory reset, view all audit logs |
 | **Supervisor** | View all cases, assign/close cases, sync OFAC list, export backups |
 | **Officer** | Create cases, run investigations, upload CSV data, add to blacklist |
-| **Analyst** | Read-only — view graphs, reports, cases assigned to them |
+| **Analyst** | Read-only - view graphs, reports, cases assigned to them |
 
 ---
 
@@ -325,7 +325,7 @@ POST /api/v1/blacklist/sync-ofac       Sync OFAC SDN sanctions list (Supervisor+
 
 ### Backup & Recovery
 ```
-GET  /api/v1/backup/export             Full backup — encrypted .ct.enc file (Supervisor+)
+GET  /api/v1/backup/export             Full backup - encrypted .ct.enc file (Supervisor+)
 GET  /api/v1/backup/export/incremental Last N hours only (Supervisor+)
 GET  /api/v1/backup/status             DB stats + last backup timestamp
 POST /api/v1/backup/restore            Restore from .ct.enc / .json.gz / .json (Admin only)
@@ -365,9 +365,9 @@ Every entity gets a 0–100 risk score computed from these signals:
 
 | Score | Risk Level |
 |-------|------------|
-| 50 + | HIGH — immediate action recommended |
-| 25–49 | MEDIUM — warrants further investigation |
-| 10–24 | LOW — monitor |
+| 50 + | HIGH - immediate action recommended |
+| 25–49 | MEDIUM - warrants further investigation |
+| 10–24 | LOW - monitor |
 | 0–9 | CLEAN |
 
 ---
@@ -388,7 +388,7 @@ POST http://localhost:8000/api/v1/backup/restore
 GET http://localhost:8000/api/v1/backup/export/incremental?since_hours=24
 ```
 
-Keep your `BACKUP_ENCRYPTION_PASSWORD` safe — without it, the `.ct.enc` file cannot be decrypted.
+Keep your `BACKUP_ENCRYPTION_PASSWORD` safe - without it, the `.ct.enc` file cannot be decrypted.
 
 ---
 
@@ -437,21 +437,21 @@ For deploying as a live website accessible to multiple police stations:
    NEO4J_PASSWORD=<change from default>
    ```
 
-2. **Frontend** — build a static bundle and serve via nginx:
+2. **Frontend** - build a static bundle and serve via nginx:
    ```bash
    cd cybertrail-frontend
    npm run build            # output goes to dist/
    # serve dist/ with nginx or any static server
    ```
 
-3. **Backend** — use multiple workers in production:
+3. **Backend** - use multiple workers in production:
    ```bash
    uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
    ```
 
-4. **Access control** — the system uses invite-only accounts. Only Admin can create new user accounts. There is no self-registration. Officers need to contact admin for login credentials.
+4. **Access control** - the system uses invite-only accounts. Only Admin can create new user accounts. There is no self-registration. Officers need to contact admin for login credentials.
 
-5. **HTTPS** — use nginx as a reverse proxy with an SSL certificate (Let's Encrypt / certbot).
+5. **HTTPS** - use nginx as a reverse proxy with an SSL certificate (Let's Encrypt / certbot).
 
 ---
 
@@ -492,13 +492,13 @@ The `BACKUP_ENCRYPTION_PASSWORD` in your `.env` must match the one used when the
 
 ## Built With
 
-- [FastAPI](https://fastapi.tiangolo.com/) — Python async web framework
-- [Neo4j](https://neo4j.com/) — Native graph database
-- [Redis](https://redis.io/) — In-memory cache
-- [React](https://react.dev/) — Frontend framework
-- [Cytoscape.js](https://cytoscape.org/) — Graph visualisation
-- [NetworkX](https://networkx.org/) — Graph analysis algorithms
-- [Docker](https://www.docker.com/) — Container runtime
+- [FastAPI](https://fastapi.tiangolo.com/) - Python async web framework
+- [Neo4j](https://neo4j.com/) - Native graph database
+- [Redis](https://redis.io/) - In-memory cache
+- [React](https://react.dev/) - Frontend framework
+- [Cytoscape.js](https://cytoscape.org/) - Graph visualisation
+- [NetworkX](https://networkx.org/) - Graph analysis algorithms
+- [Docker](https://www.docker.com/) - Container runtime
 
 ---
 

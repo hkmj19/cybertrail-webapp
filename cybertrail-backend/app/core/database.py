@@ -4,7 +4,7 @@ app/core/database.py
 Neo4j connection manager.
 
 WHY NEO4J?
-  Financial crime graphs are deeply relational — tracing "who sent money to
+  Financial crime graphs are deeply relational - tracing "who sent money to
   whom through which intermediaries" is a graph problem. Neo4j lets us run
   native graph queries (shortest path, cycle detection, community detection)
   that would be painfully slow in SQL.
@@ -92,5 +92,5 @@ class DatabaseManager:
         logger.info("Neo4j constraints and indexes verified.")
 
 
-# Singleton — imported everywhere
+# Singleton - imported everywhere
 db_manager = DatabaseManager()

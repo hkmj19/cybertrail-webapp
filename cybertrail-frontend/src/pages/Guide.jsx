@@ -1,4 +1,4 @@
-// src/pages/Guide.jsx — CyberTrail In-App Guide
+// src/pages/Guide.jsx - CyberTrail In-App Guide
 import { useState } from 'react'
 import {
   BookOpen, ChevronRight, Shield, Users,
@@ -18,7 +18,7 @@ const ROLES = [
     role: 'Admin', color: 'text-ct-red', bg: 'bg-ct-red/10 border-ct-red/20', icon: Shield,
     description: 'Full system access. Only admin can restore backups, factory reset, delete all data, and manage users.',
     permissions: [
-      'All 5 investigation modules — run traces',
+      'All 5 investigation modules - run traces',
       'View ALL cases from all officers',
       'Create, assign, close, archive, delete cases',
       'Assign cases to any user including analysts',
@@ -40,7 +40,7 @@ const ROLES = [
     role: 'Supervisor', color: 'text-ct-amber', bg: 'bg-ct-amber/10 border-ct-amber/20', icon: Star,
     description: 'Oversees all cases, reassigns officers, exports backups, views full audit trail.',
     permissions: [
-      'All 5 investigation modules — run traces',
+      'All 5 investigation modules - run traces',
       'View ALL cases from all officers',
       'Assign/reassign cases to any user',
       'Close, archive, reopen cases',
@@ -64,7 +64,7 @@ const ROLES = [
     role: 'Officer', color: 'text-ct-blue', bg: 'bg-ct-blue/10 border-ct-blue/20', icon: UserCheck,
     description: 'Primary investigator. Creates cases, runs all traces, uploads complaint data.',
     permissions: [
-      'All 5 investigation modules — run traces',
+      'All 5 investigation modules - run traces',
       'Create new investigation cases',
       'View own cases + cases assigned to them',
       'Add investigation notes and traces to cases',
@@ -90,7 +90,7 @@ const ROLES = [
     role: 'Analyst', color: 'text-ct-muted', bg: 'bg-white/5 border-white/10', icon: Eye,
     description: 'Read-only access. Views graphs, reads imported data, and reviews cases assigned to them.',
     permissions: [
-      'All 5 investigation modules — run traces (view only)',
+      'All 5 investigation modules - run traces (view only)',
       'View cases assigned to them only',
       'View complaint data (UPI, Social, Shell, Account Link tabs)',
       'Check blacklist for any identifier',
@@ -146,12 +146,12 @@ const MODULES = [
     id: 'crypto', label: 'Crypto Tracer', icon: Bitcoin, color: 'text-ct-blue', bg: 'bg-ct-blue/10 border-ct-blue/20',
     what: 'Traces cryptocurrency wallet transactions across Bitcoin, Ethereum, and TRON/USDT networks using live blockchain APIs.',
     input: 'BTC: bc1qxy2kgdygjrsqtzq2n0yrf2493gqxmjt6x7rj |  ETH: 0x742d35Cc6634C0532925a3b8Bc454e4438f44e  |  TRON: TN3W4H6rK2ce4vX9YnFQHwKENnHjoxb3m9',
-    requires: 'BlockCypher API (BTC), Etherscan API (ETH), TronGrid API (TRON) — set in .env',
+    requires: 'BlockCypher API (BTC), Etherscan API (ETH), TronGrid API (TRON) - set in .env',
     steps: [
       'Go to Investigate → Crypto tab',
-      'Paste wallet address — chain is auto-detected from format',
+      'Paste wallet address - chain is auto-detected from format',
       'Set depth 1–2 (depth 3+ is slow for large wallets)',
-      'Click Trace → — live blockchain data fetched',
+      'Click Trace → - live blockchain data fetched',
       'Click any node to see balance, tx count, risk level',
       'Save trace to a case via the "Save Current Trace" button',
     ],
@@ -170,7 +170,7 @@ const MODULES = [
       'Amber node = mule account (receives money FROM flagged fraud)',
       'Green/purple = victim node (sends money TO fraud)',
     ],
-    tips: 'Trace the fraud UPI ID — not the victim phone — for the full mule chain. More complaint data = richer graph.',
+    tips: 'Trace the fraud UPI ID - not the victim phone - for the full mule chain. More complaint data = richer graph.',
   },
   {
     id: 'shell', label: 'Shell Company', icon: Building2, color: 'text-ct-amber', bg: 'bg-ct-amber/10 border-ct-amber/20',
@@ -206,12 +206,12 @@ const MODULES = [
     id: 'multi', label: 'Multi-Layer', icon: Layers, color: 'text-ct-cyan', bg: 'bg-ct-cyan/10 border-ct-cyan/20',
     what: 'Runs UPI + Social modules simultaneously and merges into one unified graph. Cross-layer connections auto-detected.',
     input: 'Phone number (best for cross-layer) or UPI ID',
-    requires: 'Complaint and CDR data uploaded — works with whatever modules have data',
+    requires: 'Complaint and CDR data uploaded - works with whatever modules have data',
     steps: [
       'Go to Investigate → Multi tab',
       'Enter a phone number (recommended) or UPI ID',
       'System runs UPI + Social in parallel',
-      'Depth 2 recommended — depth 3+ is slow',
+      'Depth 2 recommended - depth 3+ is slow',
       'Nodes found in multiple modules are elevated to HIGH risk',
       'Save the merged trace to a case for court submission',
     ],
@@ -296,7 +296,7 @@ function StatusFlow() {
 
 function RBACCell({ value }) {
   if (value === '✅') return <span className="text-ct-green text-xs">✅</span>
-  if (value === '❌') return <span className="text-ct-muted/40 text-xs">—</span>
+  if (value === '❌') return <span className="text-ct-muted/40 text-xs">-</span>
   return <span className="text-[10px] font-mono text-ct-amber">{value}</span>
 }
 
@@ -399,7 +399,7 @@ export default function Guide() {
 
         {/* RBAC MATRIX */}
         <Section id="rbac" title="Full RBAC Matrix" icon={Filter}>
-          <Note type="info">Complete reference of every feature and who can access it. ✅ = allowed, — = not allowed.</Note>
+          <Note type="info">Complete reference of every feature and who can access it. ✅ = allowed, - = not allowed.</Note>
           <div className="rounded-xl border border-ct-border overflow-hidden">
             <table className="w-full">
               <thead>
@@ -427,7 +427,7 @@ export default function Guide() {
 
         {/* MODULES */}
         <Section id="modules" title="Investigation Modules" icon={Search}>
-          <Note type="info">All roles can run traces. Results are temporary — save to a case to preserve them permanently across sessions.</Note>
+          <Note type="info">All roles can run traces. Results are temporary - save to a case to preserve them permanently across sessions.</Note>
           <div className="space-y-4">
             {MODULES.map(m => (
               <div key={m.id} className={clsx('border rounded-xl p-4', m.bg)}>
@@ -477,19 +477,19 @@ export default function Guide() {
           <p className="text-[11px] font-mono text-ct-muted mb-2 font-semibold">Complaint CSV required columns:</p>
           <div className="bg-ct-bg border border-ct-border rounded-lg px-3 py-2 font-mono text-[10px] text-ct-text mb-4">
             complainant_phone, fraud_upi_id, amount_inr
-            <span className="text-ct-muted ml-2">— optional: complaint_id, fraud_phone, fraud_bank_account, transaction_date, district, description</span>
+            <span className="text-ct-muted ml-2">- optional: complaint_id, fraud_phone, fraud_bank_account, transaction_date, district, description</span>
           </div>
 
           <p className="text-[11px] font-mono text-ct-muted mb-2 font-semibold">CDR CSV required columns:</p>
           <div className="bg-ct-bg border border-ct-border rounded-lg px-3 py-2 font-mono text-[10px] text-ct-text mb-4">
             phone_from, phone_to, relationship
-            <span className="text-ct-muted ml-2">— optional: frequency, date (relationship: CALLED / REGISTERED / ASSOCIATED)</span>
+            <span className="text-ct-muted ml-2">- optional: frequency, date (relationship: CALLED / REGISTERED / ASSOCIATED)</span>
           </div>
 
           <p className="text-[11px] font-mono text-ct-muted mb-2 font-semibold">Shell company CSV required columns:</p>
           <div className="bg-ct-bg border border-ct-border rounded-lg px-3 py-2 font-mono text-[10px] text-ct-text mb-4">
             cin, director_din, company_name
-            <span className="text-ct-muted ml-2">— optional: director_name, designation, date_of_appointment, company_status</span>
+            <span className="text-ct-muted ml-2">- optional: director_name, designation, date_of_appointment, company_status</span>
           </div>
 
           <Note type="tip">All tables (Social, Shell, Account Link) are visible to Analysts in read-only mode. Upload/edit/delete buttons are hidden for analysts.</Note>
@@ -507,7 +507,7 @@ export default function Guide() {
               { status:'Open',     who:'All',           desc:'Newly registered, investigation not started' },
               { status:'Active',   who:'Officer+',      desc:'Investigation underway, traces being run' },
               { status:'Pending',  who:'Officer+',      desc:'Waiting for bank response or more info' },
-              { status:'Closed',   who:'Supervisor+',   desc:'Investigation complete — needs 1+ trace and 1+ note' },
+              { status:'Closed',   who:'Supervisor+',   desc:'Investigation complete - needs 1+ trace and 1+ note' },
               { status:'Archived', who:'Supervisor+',   desc:'Permanently sealed. Cannot be reopened by anyone' },
             ].map(({ status, who, desc }) => (
               <div key={status} className="bg-ct-surface border border-ct-border rounded-lg p-2.5">
@@ -538,12 +538,12 @@ export default function Guide() {
           {[
             'Open any case → click the Assign button (top right)',
             'Search by name, username, badge ID, or role in the search box',
-            'All active users appear — analysts, officers, supervisors, admins',
+            'All active users appear - analysts, officers, supervisors, admins',
             'Click a user card to select them → blue highlight + checkmark',
-            'Click Confirm Assign — the user now sees the case in their list',
+            'Click Confirm Assign - the user now sees the case in their list',
           ].map((s, i) => <Step key={i} n={i+1}>{s}</Step>)}
 
-          <Note type="warning">Archived cases are permanent — no one, not even admin, can reopen or modify them. Archive only after formal court submission.</Note>
+          <Note type="warning">Archived cases are permanent - no one, not even admin, can reopen or modify them. Archive only after formal court submission.</Note>
         </Section>
 
         {/* BLACKLIST */}
@@ -573,7 +573,7 @@ export default function Guide() {
             9876543210, Mule coordinator, high, mule_coordinator, 8
           </div>
 
-          <Note type="warning">Adding to the blacklist retroactively flags ALL existing graph nodes matching that identifier — across all saved traces and cases. Every add/remove is permanently audit-logged.</Note>
+          <Note type="warning">Adding to the blacklist retroactively flags ALL existing graph nodes matching that identifier - across all saved traces and cases. Every add/remove is permanently audit-logged.</Note>
         </Section>
 
         {/* GRAPH */}
@@ -592,7 +592,7 @@ export default function Guide() {
               <div key={n.label} className="flex items-center gap-2 bg-ct-surface border border-ct-border rounded-lg p-2">
                 <div className={clsx('w-5 h-5 rounded-full border flex-shrink-0', n.dot)}/>
                 <div>
-                  <span className="text-[10px] font-mono text-ct-text font-semibold">{n.label} — </span>
+                  <span className="text-[10px] font-mono text-ct-text font-semibold">{n.label} - </span>
                   <span className="text-[10px] font-mono text-ct-muted">{n.desc}</span>
                 </div>
               </div>
@@ -619,7 +619,7 @@ export default function Guide() {
               </div>
             ))}
           </div>
-          <Note type="tip">Traces are session-only — they disappear on page refresh or navigation. Always save to a case immediately after tracing.</Note>
+          <Note type="tip">Traces are session-only - they disappear on page refresh or navigation. Always save to a case immediately after tracing.</Note>
         </Section>
 
         {/* BACKUP */}
@@ -630,7 +630,7 @@ export default function Guide() {
             {[
               { title:'Full Backup',        who:'Supervisor+', desc:'Exports all data: complaints, cases, blacklist, CDR, companies, audit trail (last 10,000), users (no passwords). AES-256 encrypted .ct.enc file.' },
               { title:'Incremental Backup', who:'Supervisor+', desc:'Exports only data changed in the last N hours (slider: 1h–7d). Use for daily automated backups. Much smaller file.' },
-              { title:'Restore',            who:'Admin only',  desc:'Upload a .ct.enc backup file. Uses MERGE — never deletes existing data, only adds/updates. Always do a dry-run preview first.' },
+              { title:'Restore',            who:'Admin only',  desc:'Upload a .ct.enc backup file. Uses MERGE - never deletes existing data, only adds/updates. Always do a dry-run preview first.' },
               { title:'Factory Reset',      who:'System admin only', desc:'Wipes ALL investigation data. Preserves user accounts. Requires admin password + typing "DELETE ALL DATA". Cannot be undone.' },
             ].map(item => (
               <div key={item.title} className="bg-ct-surface border border-ct-border rounded-xl p-3">
@@ -645,10 +645,10 @@ export default function Guide() {
           {[
             'Go to Backup & Recovery page (sidebar, Supervisor+ only)',
             'Scroll to Restore from Backup section (Admin only)',
-            'Click the drop zone — select your .ct.enc file (or .json.gz)',
-            'File is auto-detected by content — no need to rename it',
-            'Dry run preview shows record counts — verify before restoring',
-            'Click Confirm Restore — data merges into the database',
+            'Click the drop zone - select your .ct.enc file (or .json.gz)',
+            'File is auto-detected by content - no need to rename it',
+            'Dry run preview shows record counts - verify before restoring',
+            'Click Confirm Restore - data merges into the database',
           ].map((s, i) => <Step key={i} n={i+1}>{s}</Step>)}
 
           <Note type="info">The backup file is always AES-256 encrypted with the server's BACKUP_ENCRYPTION_PASSWORD (set in .env). The restore endpoint auto-detects encrypted files by their content signature, regardless of filename.</Note>
@@ -662,7 +662,7 @@ export default function Guide() {
               <div key={s.freq} className="bg-ct-surface border border-ct-border rounded-lg p-2.5">
                 <div className="flex items-center gap-2 mb-1">
                   <span className="text-[10px] font-mono text-ct-blue font-semibold">{s.freq}</span>
-                  <span className="text-[10px] font-mono text-ct-muted">— {s.type}</span>
+                  <span className="text-[10px] font-mono text-ct-muted">- {s.type}</span>
                 </div>
                 <code className="text-[9px] font-mono text-ct-cyan/80 break-all">{s.cmd}</code>
               </div>
@@ -672,7 +672,7 @@ export default function Guide() {
 
         {/* AUDIT */}
         <Section id="audit" title="Audit Trail" icon={ShieldAlert}>
-          <Note type="critical">The audit trail is immutable — no one can delete or edit audit logs, not even after a factory reset. Every action is permanently recorded with officer name, badge ID, IP address, and timestamp.</Note>
+          <Note type="critical">The audit trail is immutable - no one can delete or edit audit logs, not even after a factory reset. Every action is permanently recorded with officer name, badge ID, IP address, and timestamp.</Note>
 
           <p className="text-[11px] font-mono text-ct-muted mb-2">Actions automatically logged:</p>
           <div className="grid grid-cols-2 gap-1.5 mb-4">
@@ -701,7 +701,7 @@ export default function Guide() {
           <div className="grid grid-cols-2 gap-2 mb-3">
             {[
               { label:'Active Officers table',  desc:'All users currently in the system with action counts' },
-              { label:'Deleted Accounts table', desc:'Users who appear in logs but no longer have an account — marked as deleted' },
+              { label:'Deleted Accounts table', desc:'Users who appear in logs but no longer have an account - marked as deleted' },
               { label:'⚠ Suspicious badge',    desc:'Officers with 3+ deletions are automatically flagged' },
             ].map(item => (
               <div key={item.label} className="bg-ct-surface border border-ct-border rounded-lg p-2.5">
@@ -754,7 +754,7 @@ export default function Guide() {
             'Open any case you have access to',
             'Click the "Print Report" button (visible to all roles)',
             'Report opens in a new tab as an A4 court-ready document',
-            'Review all sections — verify flagged entities and notes',
+            'Review all sections - verify flagged entities and notes',
             'Click 🖨 Print / Save as PDF',
             'In print dialog: Paper = A4, Margins = None or Minimal, Background graphics = ON',
           ].map((s, i) => <Step key={i} n={i+1}>{s}</Step>)}
@@ -783,13 +783,13 @@ export default function Guide() {
           <div className="space-y-2.5">
             {[
               { title:'Trace the fraud UPI ID, not the victim phone', desc:'The fraud UPI shows the full mule chain outward. The victim phone only shows who they paid.' },
-              { title:'Save traces before navigating away', desc:'Traces are session-only — they disappear on refresh or page change. Save to a case immediately.' },
+              { title:'Save traces before navigating away', desc:'Traces are session-only - they disappear on refresh or page change. Save to a case immediately.' },
               { title:'Upload CDR before running Social traces', desc:'Without CDR data in the database, Social traces will return empty graphs. Upload CDR CSV first.' },
               { title:'Use depth 2 for UPI, depth 1-2 for Crypto', desc:'Depth 3+ is slow and creates noisy graphs. Start shallow, go deeper only for specific leads.' },
-              { title:'Assign cases to analysts for read-only review', desc:'Analysts cannot edit cases but can run traces, view all data, and print reports — useful for intelligence review.' },
+              { title:'Assign cases to analysts for read-only review', desc:'Analysts cannot edit cases but can run traces, view all data, and print reports - useful for intelligence review.' },
               { title:'Use Pending status while waiting for bank response', desc:'Set case to Pending when you\'ve sent a Section 91 notice. Set back to Active when you receive the response and upload it.' },
               { title:'Multi-layer trace for unknown suspects', desc:'If you have a phone but don\'t know which system they used, run Multi. It checks UPI + Social in parallel.' },
-              { title:'Backup before bulk operations', desc:'Before deleting complaints, resetting data, or making bulk changes — export a full backup first.' },
+              { title:'Backup before bulk operations', desc:'Before deleting complaints, resetting data, or making bulk changes - export a full backup first.' },
               { title:'Deleted account logs are preserved in audit trail', desc:'Even if you delete an officer\'s account, their audit logs remain permanently. The Audit Trail page flags them separately.' },
               { title:'Archive only after court submission', desc:'Archived cases are permanent and unmodifiable by anyone. Archive only after the case has been formally submitted.' },
             ].map((tip, i) => (

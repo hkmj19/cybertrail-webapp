@@ -1,5 +1,5 @@
 """
-app/api/routes/social.py — Social Graph endpoints
+app/api/routes/social.py - Social Graph endpoints
 """
 from app.services.audit_service import audit_service
 from app.core.auth import get_current_user, require_officer
@@ -135,7 +135,7 @@ async def ingest_call_records(
             officer_badge=current_user.badge_id,
             officer_role=current_user.role.value,
             ip_address=request.client.host if request.client else "unknown",
-            description=f"CDR import: {file.filename} — {imported} call records",
+            description=f"CDR import: {file.filename} - {imported} call records",
         )
         return {"status": "success", "imported": imported}
     except Exception as e:

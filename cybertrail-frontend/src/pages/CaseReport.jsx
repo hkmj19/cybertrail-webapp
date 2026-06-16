@@ -1,5 +1,5 @@
 /**
- * CaseReport.jsx — Court-ready A4 PDF Report
+ * CaseReport.jsx - Court-ready A4 PDF Report
  * Data source: getCase() → case metadata + notes + traces
  * Print via: window.print() with @media print CSS
  */
@@ -9,7 +9,7 @@ import { getCase } from '../services/api'
 import useStore from '../store/useStore'
 
 // ── Helpers ───────────────────────────────────────────────
-const STATUS_LABEL    = { open:'Open', active:'Active — Under Investigation', pending:'Pending', closed:'Closed', archived:'Archived' }
+const STATUS_LABEL    = { open:'Open', active:'Active - Under Investigation', pending:'Pending', closed:'Closed', archived:'Archived' }
 const STATUS_COLOR    = { open:'#d97706', active:'#2563eb', pending:'#7c3aed', closed:'#16a34a', archived:'#6b7280' }
 const PRIORITY_LABEL  = { critical:'CRITICAL', high:'HIGH', medium:'MEDIUM', low:'LOW' }
 const PRIORITY_COLOR  = { critical:'#dc2626', high:'#d97706', medium:'#2563eb', low:'#6b7280' }
@@ -17,15 +17,15 @@ const NOTE_TYPE_LABEL = { observation:'Observation', action:'Action Taken', evid
 const MODULE_LABEL    = { crypto:'Cryptocurrency', upi:'UPI / Bank Fraud', shell:'Shell Company', social:'Communication Network', multi:'Multi-Layer' }
 
 function inr(n) {
-  if (!n && n !== 0) return '—'
+  if (!n && n !== 0) return '-'
   return new Intl.NumberFormat('en-IN', { style:'currency', currency:'INR', maximumFractionDigits:0 }).format(n)
 }
 function fmtDate(iso) {
-  if (!iso) return '—'
+  if (!iso) return '-'
   return new Date(iso).toLocaleDateString('en-IN', { day:'2-digit', month:'long', year:'numeric' })
 }
 function fmtDT(iso) {
-  if (!iso) return '—'
+  if (!iso) return '-'
   return new Date(iso).toLocaleString('en-IN', { day:'2-digit', month:'short', year:'numeric', hour:'2-digit', minute:'2-digit', hour12:true })
 }
 
@@ -53,7 +53,7 @@ function MetaTable({ rows }) {
               whiteSpace:'nowrap' }}>{label}</td>
             <td style={{ padding:'5px 10px', color:'#1e293b', border:'1px solid #c7d2e0',
               fontSize:10.5, ...(span ? { colSpan:3 } : {}) }}
-              colSpan={span ? 3 : 1}>{value || '—'}</td>
+              colSpan={span ? 3 : 1}>{value || '-'}</td>
           </tr>
         ))}
       </tbody>
@@ -75,7 +75,7 @@ export default function CaseReport() {
       .catch(() => navigate('/cases'))
   }, [caseId])
 
-  // Manual print only — user clicks button
+  // Manual print only - user clicks button
 
   if (loading || !cas) return (
     <div style={{ display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center',
@@ -252,7 +252,7 @@ export default function CaseReport() {
                 fontSize:26, color:'#1e3a5f', flexShrink:0 }}>⚖</div>
               <div>
                 <div style={{ fontSize:14, fontWeight:'bold', color:'#1e3a5f', textTransform:'uppercase', letterSpacing:0.5 }}>
-                  Government of India — Police Department
+                  Government of India - Police Department
                 </div>
                 <div style={{ fontSize:11, color:'#475569', marginTop:2 }}>
                   {user?.department || 'Cybercrime Investigation Division'}
@@ -271,7 +271,7 @@ export default function CaseReport() {
               <div><strong>Generated:</strong> {generatedAt} IST</div>
               <div style={{ color:'#dc2626', fontWeight:'bold', fontSize:9,
                 border:'1px solid #dc2626', padding:'1px 6px', marginTop:2 }}>
-                RESTRICTED — LEA USE ONLY
+                RESTRICTED - LEA USE ONLY
               </div>
             </div>
           </div>
@@ -307,26 +307,26 @@ export default function CaseReport() {
           </div>
           <div className="summary-box">
             <div className="summary-val" style={{ color:'#dc2626', fontSize:16 }}>
-              {cas.fraud_amount ? inr(cas.fraud_amount) : '—'}
+              {cas.fraud_amount ? inr(cas.fraud_amount) : '-'}
             </div>
             <div className="summary-lbl">Fraud Amount</div>
           </div>
         </div>
 
-        {/* Case metadata — 2 column layout */}
+        {/* Case metadata - 2 column layout */}
         <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:0, border:'1.5px solid #c7d2e0' }}>
           {[
             ['Case Number',    cas.case_number],
             ['Case Title',     cas.title],
             ['FIR Number',     cas.fir_number || 'Not yet registered'],
-            ['District / PS',  cas.district || '—'],
+            ['District / PS',  cas.district || '-'],
             ['Status', <span style={{ color: STATUS_COLOR[cas.status], fontWeight:'bold', fontSize:10 }}>
               ● {STATUS_LABEL[cas.status] || cas.status}
             </span>],
             ['Priority', <span style={{ color: PRIORITY_COLOR[cas.priority], fontWeight:'bold', fontSize:10 }}>
               ● {PRIORITY_LABEL[cas.priority] || cas.priority}
             </span>],
-            ['Complainant / Victim', cas.complainant || '—'],
+            ['Complainant / Victim', cas.complainant || '-'],
             ['Fraud Amount (INR)', <span style={{ color:'#dc2626', fontWeight:'bold' }}>{inr(cas.fraud_amount)}</span>],
             ['Investigation Officer', cas.created_by],
             ['Assigned Officer',  cas.assigned_to || cas.created_by],
@@ -341,7 +341,7 @@ export default function CaseReport() {
               </div>
               <div style={{ padding:'5px 10px', fontSize:10.5, color:'#1e293b',
                 borderBottom: i < 10 ? '1px solid #c7d2e0' : 'none' }}>
-                {value || '—'}
+                {value || '-'}
               </div>
             </div>
           ))}
@@ -469,8 +469,8 @@ export default function CaseReport() {
                         <strong style={{ color:'#1e3a5f', textTransform:'uppercase', fontSize:9 }}>
                           [{NOTE_TYPE_LABEL[n.note_type] || n.note_type}]
                         </strong>
-                        {' — '}{n.created_by}
-                        {' — '}{fmtDT(n.created_at)}
+                        {' - '}{n.created_by}
+                        {' - '}{fmtDT(n.created_at)}
                       </div>
                       <div className="note-body">{n.content}</div>
                     </div>
@@ -525,7 +525,7 @@ export default function CaseReport() {
             <div className="sig-label">Reviewing / Supervising Officer</div>
             <div className="sig-line"></div>
             <div className="sig-name">___________________________________</div>
-            <div className="sig-dept">SP / DSP Cybercrime — {user?.department || 'Cybercrime Investigation Division'}</div>
+            <div className="sig-dept">SP / DSP Cybercrime - {user?.department || 'Cybercrime Investigation Division'}</div>
             <div className="sig-dept" style={{ marginTop:4 }}>
               Date: _______________________  &nbsp; Seal:
             </div>
@@ -536,7 +536,7 @@ export default function CaseReport() {
         <div className="doc-footer">
           <span>CyberTrail v1.0 · {user?.department || 'Cybercrime Investigation Division'}</span>
           <span>Case {cas.case_number} · {generatedAt} IST</span>
-          <span>RESTRICTED — Law Enforcement Use Only</span>
+          <span>RESTRICTED - Law Enforcement Use Only</span>
         </div>
 
       </div>

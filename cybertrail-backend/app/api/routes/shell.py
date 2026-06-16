@@ -1,5 +1,5 @@
 """
-app/api/routes/shell.py — Shell Company endpoints
+app/api/routes/shell.py - Shell Company endpoints
 """
 from app.services.audit_service import audit_service
 from app.core.auth import get_current_user, require_officer
@@ -127,7 +127,7 @@ async def ingest_company_data(
             officer_badge=current_user.badge_id,
             officer_role=current_user.role.value,
             ip_address=request.client.host if request.client else "unknown",
-            description=f"Company data import: {file.filename} — {imported} director records",
+            description=f"Company data import: {file.filename} - {imported} director records",
         )
         return {"status": "success", "imported": imported}
     except Exception as e:

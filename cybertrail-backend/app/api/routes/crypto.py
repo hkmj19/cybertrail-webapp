@@ -4,9 +4,9 @@ app/api/routes/crypto.py
 REST API endpoints for the Crypto Tracer module.
 
 Endpoints:
-  POST /api/v1/crypto/trace        — Trace a wallet address
-  GET  /api/v1/crypto/wallet/{addr} — Get single wallet info
-  POST /api/v1/crypto/batch        — Trace multiple wallets at once
+  POST /api/v1/crypto/trace        - Trace a wallet address
+  GET  /api/v1/crypto/wallet/{addr} - Get single wallet info
+  POST /api/v1/crypto/batch        - Trace multiple wallets at once
 """
 
 from app.services.audit_service import audit_service

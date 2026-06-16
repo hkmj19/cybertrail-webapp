@@ -78,7 +78,7 @@ async def create_case(
         officer_badge=current_user.badge_id,
         officer_role=current_user.role.value,
         ip_address=request.client.host if request.client else "unknown",
-        description=f"Case created: {case.case_number} — {data.title} | FIR: {data.fir_number or 'none'} | Priority: {data.priority.value}",
+        description=f"Case created: {case.case_number} - {data.title} | FIR: {data.fir_number or 'none'} | Priority: {data.priority.value}",
         after={"case_number": case.case_number, "title": data.title,
                "fir_number": data.fir_number, "priority": data.priority.value,
                "fraud_amount": str(data.fraud_amount)}
@@ -126,7 +126,7 @@ async def update_case(
         new_status = data.status.value
         old_status = case.status.value
 
-        # ARCHIVED is permanent — no one can change it
+        # ARCHIVED is permanent - no one can change it
         if old_status == "archived":
             raise HTTPException(
                 status_code=400,
@@ -231,7 +231,7 @@ async def delete_case(
         officer_badge=current_user.badge_id,
         officer_role=current_user.role.value,
         ip_address=request.client.host if request.client else "unknown",
-        description=f"Case DELETED: {case.case_number} — {case.title} | FIR: {case.fir_number}",
+        description=f"Case DELETED: {case.case_number} - {case.title} | FIR: {case.fir_number}",
         before={"case_number": case.case_number, "title": case.title,
                 "status": case.status.value, "fraud_amount": str(case.fraud_amount)}
     )
@@ -309,7 +309,7 @@ async def attach_trace(
         officer_badge=current_user.badge_id,
         officer_role=current_user.role.value,
         ip_address=request.client.host if request.client else "unknown",
-        description=f"Trace saved to {case.case_number}: {body.get('module','?')} — {body.get('identifier','?')} | {gd.get('total_nodes',0)} nodes | {gd.get('flagged_count',0)} flagged",
+        description=f"Trace saved to {case.case_number}: {body.get('module','?')} - {body.get('identifier','?')} | {gd.get('total_nodes',0)} nodes | {gd.get('flagged_count',0)} flagged",
     )
     return result
 

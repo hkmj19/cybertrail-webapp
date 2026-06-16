@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     APP_HOST: str = "0.0.0.0"
     APP_PORT: int = 8000
 
-    # JWT — MUST be set in .env in production
+    # JWT - MUST be set in .env in production
     # Generate a strong key with: openssl rand -hex 32
     JWT_SECRET_KEY: str = secrets.token_hex(32)   # random fallback for dev only
     JWT_ACCESS_EXPIRE_MINUTES:  int = 60           # 1 hour
