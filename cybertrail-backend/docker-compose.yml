@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+
+  neo4j:
+    image: neo4j:5.19-community
+    container_name: cybertrail_neo4j
+    ports:
+      - "7474:7474"   # Neo4j Browser UI
+      - "7687:7687"   # Bolt protocol (app connects here)
+    environment:
+      NEO4J_AUTH: neo4j/cybertrail123
+      NEO4J_PLUGINS: '["apoc"]'          # APOC — utility functions for graph ops
+      NEO4J_dbms_security_procedures_unrestricted: apoc.*
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: cybertrail_redis
+    ports:
+      - "6379:6379"
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  redis_data:

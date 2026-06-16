@@ -1,0 +1,9 @@
+identifier,reason,severity,fraud_type,complaint_count
+fraud@paytm,Confirmed UPI fraud — multiple victims,high,upi_fraud,12
+9876543210,Phone linked to 8 fraud UPI accounts,high,mule_coordinator,8
+mule1@ybl,Mule account — immediate fund layering detected,high,mule_account,3
+0x742d35Cc6634C0532925a3b844Bc454e4438f44e,ETH wallet receiving fraud proceeds,high,crypto_layering,2
+AAABK1234C,PAN linked to struck-off shell company,medium,shell_company,1
+L21091MH2018PTC312456,Struck-off shell company used for layering,high,shell_company,5
+1234567890123456,Bank account flagged by I4C — mule,medium,mule_account,2
+bc1qxy2kgdygjrsqtzq2n0yrf2493gqxmjt6x7rj,BTC wallet receiving ransom payments,high,ransomware,1

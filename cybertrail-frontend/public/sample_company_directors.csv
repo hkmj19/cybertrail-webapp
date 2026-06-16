@@ -1,0 +1,8 @@
+cin,company_name,director_din,director_name,designation,date_of_appointment,company_status
+L21091KA2019PTC123456,Alpha Ventures Pvt Ltd,07123456,Ramesh Kumar,Director,2019-03-15,Active
+L21091KA2019PTC123456,Alpha Ventures Pvt Ltd,07234567,Suresh Patel,Director,2019-03-15,Active
+U67190MH2020PTC234567,Beta Holdings Pvt Ltd,07123456,Ramesh Kumar,Director,2020-01-10,Active
+U67190MH2020PTC234567,Beta Holdings Pvt Ltd,07345678,Vikram Shah,Director,2020-01-10,Struck Off
+U45200DL2021PTC345678,Gamma Consultants Pvt Ltd,07123456,Ramesh Kumar,Managing Director,2021-06-01,Active
+U45200DL2021PTC345678,Gamma Consultants Pvt Ltd,07234567,Suresh Patel,Director,2021-06-01,Active
+U11100KA2022PTC456789,Delta Services Pvt Ltd,07234567,Suresh Patel,Director,2022-02-20,Active

@@ -1,0 +1,5 @@
+from_upi,to_upi,amount_inr,transfer_date,bank_reference,from_bank,to_bank
+fraud@paytm,mule1@ybl,380000,2026-01-16,HDFC-TXN-2026-001,HDFC,Yes Bank
+fraud@paytm,mule2@oksbi,240000,2026-01-19,HDFC-TXN-2026-002,HDFC,SBI
+mule1@ybl,9876543210@upi,300000,2026-01-17,YBL-TXN-2026-001,Yes Bank,Paytm
+mule2@oksbi,crypto_wallet@exchange,200000,2026-01-20,SBI-TXN-2026-001,SBI,Exchange
