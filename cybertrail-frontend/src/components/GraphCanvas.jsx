@@ -41,6 +41,7 @@ function buildElements(graph, showFlaggedOnly) {
           label:      String(n.label || id),
           type,
           flagged:    flag,
+          risk_level: n.risk_level || 'unknown',
           nodeBg:     c.bg,
           nodeBorder: c.border,
           nodeText:   c.text,

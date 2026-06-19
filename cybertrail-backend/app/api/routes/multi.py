@@ -11,6 +11,7 @@ from slowapi.util import get_remote_address
 from loguru import logger
 from app.models.graph import InvestigationGraph
 from app.modules.multi.combiner import MultiLayerCombiner
+from app.services.risk_service import risk_service
 
 router = APIRouter()
 limiter = Limiter(key_func=get_remote_address)
@@ -38,6 +39,10 @@ async def multi_trace(request: Request, body: MultiTraceRequest, current_user: U
             force_refresh=body.force_refresh,
             modules=body.modules,
         )
+        scores = await risk_service.bulk_score_graph(result.nodes)
+        for node in result.nodes:
+            if node.id in scores:
+                node.risk_level = scores[node.id]
 
         # ── Audit: log trace run ──────────────────────
         try:

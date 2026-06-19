@@ -19,6 +19,7 @@ from loguru import logger
 
 from app.models.graph import CryptoTraceRequest, InvestigationGraph
 from app.modules.crypto.tracer import CryptoTracer
+from app.services.risk_service import risk_service
 
 router = APIRouter()
 limiter = Limiter(key_func=get_remote_address)
@@ -39,6 +40,10 @@ async def trace_wallet(request: Request, body: CryptoTraceRequest, current_user:
     """
     try:
         result = await _tracer.trace(body)
+        scores = await risk_service.bulk_score_graph(result.nodes)
+        for node in result.nodes:
+            if node.id in scores:
+                node.risk_level = scores[node.id]
         try:
             await audit_service.log(
                 action="trace", entity_type="investigation",

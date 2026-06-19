@@ -20,6 +20,7 @@ from loguru import logger
 
 from app.models.graph import UPITraceRequest, InvestigationGraph
 from app.modules.upi.tracer import UPITracer
+from app.services.risk_service import risk_service
 
 router = APIRouter()
 limiter = Limiter(key_func=get_remote_address)
@@ -39,6 +40,10 @@ async def trace_upi(request: Request, body: UPITraceRequest, current_user: UserI
     """
     try:
         result = await _tracer.trace(body)
+        scores = await risk_service.bulk_score_graph(result.nodes)
+        for node in result.nodes:
+            if node.id in scores:
+                node.risk_level = scores[node.id]
         try:
             await audit_service.log(
                 action="trace", entity_type="investigation",
