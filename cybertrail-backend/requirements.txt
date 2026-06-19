@@ -5,9 +5,9 @@ python-dotenv==1.0.1    # load .env config
 neo4j==5.19.0           # official Neo4j Python driver
 redis==5.0.4            # caching layer
 networkx==3.3           # in-memory graph analysis
-pandas==2.2.2           # CSV ingestion for UPI complaint data
-pydantic==2.7.1         # request/response validation
-pydantic-settings==2.2.1
+pandas>=2.2.3           # CSV ingestion for UPI complaint data
+pydantic>=2.9.0         # request/response validation
+pydantic-settings>=2.3.0
 python-multipart==0.0.9 # file upload (complaint CSVs)
 aiofiles==23.2.1        # async file I/O
 slowapi==0.1.9          # rate limiting
